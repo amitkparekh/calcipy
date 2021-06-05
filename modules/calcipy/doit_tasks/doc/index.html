@@ -1,0 +1,1656 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="calcipy project documentation">
+      
+      
+      
+        <meta name="author" content="Kyle King">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>calcipy.doit_tasks.doc - calcipy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="green">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calcipydoit_tasksdoc" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="calcipy" class="md-header__button md-logo" aria-label="calcipy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            calcipy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              calcipy.doit_tasks.doc
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="green" type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kyleking/calcipy/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/calcipy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      calcipy
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../docs/CHANGELOG/" class="md-tabs__link">
+        Docs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Modules
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="calcipy" class="md-nav__button md-logo" aria-label="calcipy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    calcipy
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kyleking/calcipy/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/calcipy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        calcipy
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        Docs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CHANGELOG/" class="md-nav__link">
+        CHANGELOG
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CODE_OF_CONDUCT/" class="md-nav__link">
+        Contributor Covenant Code of Conduct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CODE_TAG_SUMMARY/" class="md-nav__link">
+        Task Summary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/DEVELOPER_GUIDE/" class="md-nav__link">
+        Developer Notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/SECURITY/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/STYLE_GUIDE/" class="md-nav__link">
+        Personal Style Guides
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Modules
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Modules" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1">
+        Calcipy
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calcipy" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          Calcipy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        calcipy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../file_helpers/" class="md-nav__link">
+        calcipy.file_helpers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../log_helpers/" class="md-nav__link">
+        calcipy.log_helpers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wrappers/" class="md-nav__link">
+        calcipy.wrappers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_5" type="checkbox" id="__nav_3_1_5" >
+      
+      <label class="md-nav__link" for="__nav_3_1_5">
+        Dev
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dev" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/" class="md-nav__link">
+        calcipy.dev
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/conftest/" class="md-nav__link">
+        calcipy.dev.conftest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/noxfile/" class="md-nav__link">
+        calcipy.dev.noxfile
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_6" type="checkbox" id="__nav_3_1_6" checked>
+      
+      <label class="md-nav__link" for="__nav_3_1_6">
+        Doit tasks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Doit tasks" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          Doit tasks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        calcipy.doit_tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base/" class="md-nav__link">
+        calcipy.doit_tasks.base
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_tag_collector/" class="md-nav__link">
+        calcipy.doit_tasks.code_tag_collector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          calcipy.doit_tasks.doc
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        calcipy.doit_tasks.doc
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_bump" class="md-nav__link">
+    task_cl_bump
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_bump_pre" class="md-nav__link">
+    task_cl_bump_pre
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_write" class="md-nav__link">
+    task_cl_write
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_deploy_docs" class="md-nav__link">
+    task_deploy_docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_document" class="md-nav__link">
+    task_document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_open_docs" class="md-nav__link">
+    task_open_docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_autoformatted_md_sections" class="md-nav__link">
+    write_autoformatted_md_sections
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../doit_globals/" class="md-nav__link">
+        calcipy.doit_tasks.doit_globals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../file_search/" class="md-nav__link">
+        calcipy.doit_tasks.file_search
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lint/" class="md-nav__link">
+        calcipy.doit_tasks.lint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packaging/" class="md-nav__link">
+        calcipy.doit_tasks.packaging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../summary_reporter/" class="md-nav__link">
+        calcipy.doit_tasks.summary_reporter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../test/" class="md-nav__link">
+        calcipy.doit_tasks.test
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_bump" class="md-nav__link">
+    task_cl_bump
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_bump_pre" class="md-nav__link">
+    task_cl_bump_pre
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_cl_write" class="md-nav__link">
+    task_cl_write
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_deploy_docs" class="md-nav__link">
+    task_deploy_docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_document" class="md-nav__link">
+    task_document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task_open_docs" class="md-nav__link">
+    task_open_docs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_autoformatted_md_sections" class="md-nav__link">
+    write_autoformatted_md_sections
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kyleking/calcipy/edit/main/docs/modules/calcipy/doit_tasks/doc.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="calcipydoit_tasksdoc">calcipy.doit_tasks.doc<a class="headerlink" href="#calcipydoit_tasksdoc" title="Permanent link">⚓︎</a></h1>
+<p>doit Documentation Utilities.</p>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="  1 "></span><span class="sd">&quot;&quot;&quot;doit Documentation Utilities.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="  2 "></span>
+<span class="linenos" data-linenos="  3 "></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="linenos" data-linenos="  4 "></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="linenos" data-linenos="  5 "></span><span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="linenos" data-linenos="  6 "></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="linenos" data-linenos="  7 "></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Pattern</span>
+<span class="linenos" data-linenos="  8 "></span>
+<span class="linenos" data-linenos="  9 "></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="linenos" data-linenos=" 10 "></span><span class="kn">from</span> <span class="nn">beartype</span> <span class="kn">import</span> <span class="n">beartype</span>
+<span class="linenos" data-linenos=" 11 "></span><span class="kn">from</span> <span class="nn">doit.tools</span> <span class="kn">import</span> <span class="n">Interactive</span>
+<span class="linenos" data-linenos=" 12 "></span><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="linenos" data-linenos=" 13 "></span><span class="kn">from</span> <span class="nn">transitions</span> <span class="kn">import</span> <span class="n">Machine</span>
+<span class="linenos" data-linenos=" 14 "></span>
+<span class="linenos" data-linenos=" 15 "></span><span class="kn">from</span> <span class="nn">..file_helpers</span> <span class="kn">import</span> <span class="n">_MKDOCS_CONFIG_NAME</span><span class="p">,</span> <span class="n">_read_yaml_file</span><span class="p">,</span> <span class="n">read_lines</span>
+<span class="linenos" data-linenos=" 16 "></span><span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="n">debug_task</span><span class="p">,</span> <span class="n">open_in_browser</span>
+<span class="linenos" data-linenos=" 17 "></span><span class="kn">from</span> <span class="nn">.doit_globals</span> <span class="kn">import</span> <span class="n">DG</span><span class="p">,</span> <span class="n">DoitTask</span>
+<span class="linenos" data-linenos=" 18 "></span>
+<span class="linenos" data-linenos=" 19 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos=" 20 "></span><span class="c1"># Manage Changelog</span>
+<span class="linenos" data-linenos=" 21 "></span>
+<span class="linenos" data-linenos=" 22 "></span>
+<span class="linenos" data-linenos=" 23 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 24 "></span><span class="k">def</span> <span class="nf">_move_cl</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 25 "></span>    <span class="sd">&quot;&quot;&quot;Move the `CHANGELOG.md` file to the document directory.</span>
+<span class="linenos" data-linenos=" 26 "></span>
+<span class="linenos" data-linenos=" 27 "></span><span class="sd">    Raises:</span>
+<span class="linenos" data-linenos=" 28 "></span><span class="sd">        FileNotFoundError: if the changelog was not found</span>
+<span class="linenos" data-linenos=" 29 "></span>
+<span class="linenos" data-linenos=" 30 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 31 "></span>    <span class="n">path_cl</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;CHANGELOG.md&#39;</span>
+<span class="linenos" data-linenos=" 32 "></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">path_cl</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<span class="linenos" data-linenos=" 33 "></span>        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not locate the changelog at: </span><span class="si">{</span><span class="n">path_cl</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 34 "></span>    <span class="n">path_cl</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">doc_sub_dir</span> <span class="o">/</span> <span class="n">path_cl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="linenos" data-linenos=" 35 "></span>
+<span class="linenos" data-linenos=" 36 "></span>
+<span class="linenos" data-linenos=" 37 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 38 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 39 "></span>    <span class="sd">&quot;&quot;&quot;Write a Changelog file with the raw Git history.</span>
+<span class="linenos" data-linenos=" 40 "></span>
+<span class="linenos" data-linenos=" 41 "></span><span class="sd">    Resources:</span>
+<span class="linenos" data-linenos=" 42 "></span>
+<span class="linenos" data-linenos=" 43 "></span><span class="sd">    - https://keepachangelog.com/en/1.0.0/</span>
+<span class="linenos" data-linenos=" 44 "></span><span class="sd">    - https://www.conventionalcommits.org/en/v1.0.0/</span>
+<span class="linenos" data-linenos=" 45 "></span><span class="sd">    - https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message</span>
+<span class="linenos" data-linenos=" 46 "></span><span class="sd">    - https://chris.beams.io/posts/git-commit/</span>
+<span class="linenos" data-linenos=" 47 "></span><span class="sd">    - https://semver.org/</span>
+<span class="linenos" data-linenos=" 48 "></span><span class="sd">    - https://calver.org/</span>
+<span class="linenos" data-linenos=" 49 "></span>
+<span class="linenos" data-linenos=" 50 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 51 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 52 "></span>
+<span class="linenos" data-linenos=" 53 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 54 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos=" 55 "></span>        <span class="s1">&#39;poetry run cz changelog&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 56 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos=" 57 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos=" 58 "></span>
+<span class="linenos" data-linenos=" 59 "></span>
+<span class="linenos" data-linenos=" 60 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 61 "></span><span class="k">def</span> <span class="nf">task_cl_bump</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 62 "></span>    <span class="sd">&quot;&quot;&quot;Bumps project version based on commits &amp; settings in pyproject.toml.</span>
+<span class="linenos" data-linenos=" 63 "></span>
+<span class="linenos" data-linenos=" 64 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 65 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 66 "></span>
+<span class="linenos" data-linenos=" 67 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 68 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos=" 69 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --annotated-tag&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 70 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos=" 71 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 72 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos=" 73 "></span>
+<span class="linenos" data-linenos=" 74 "></span>
+<span class="linenos" data-linenos=" 75 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 76 "></span><span class="k">def</span> <span class="nf">task_cl_bump_pre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 77 "></span>    <span class="sd">&quot;&quot;&quot;Bump with specified pre-release tag.</span>
+<span class="linenos" data-linenos=" 78 "></span>
+<span class="linenos" data-linenos=" 79 "></span><span class="sd">    Example: `doit run cl_bump_pre -p alpha` or `doit run cl_bump_pre -p rc`</span>
+<span class="linenos" data-linenos=" 80 "></span>
+<span class="linenos" data-linenos=" 81 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 82 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 83 "></span>
+<span class="linenos" data-linenos=" 84 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 85 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos=" 86 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --prerelease </span><span class="si">%(prerelease)s</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 87 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos=" 88 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 89 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos=" 90 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="linenos" data-linenos=" 91 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;prerelease&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;prerelease&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 92 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="s1">&#39;Specify prerelease version for bump (alpha, beta, rc)&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 93 "></span>    <span class="p">}]</span>
+<span class="linenos" data-linenos=" 94 "></span>    <span class="k">return</span> <span class="n">task</span>
+<span class="linenos" data-linenos=" 95 "></span>
+<span class="linenos" data-linenos=" 96 "></span>
+<span class="linenos" data-linenos=" 97 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos=" 98 "></span><span class="c1"># Manage README Updates</span>
+<span class="linenos" data-linenos=" 99 "></span>
+<span class="linenos" data-linenos="100 "></span>
+<span class="linenos" data-linenos="101 "></span><span class="k">class</span> <span class="nc">_ReplacementMachine</span><span class="p">(</span><span class="n">Machine</span><span class="p">):</span>  <span class="c1"># type: ignore[misc] # noqa: H601</span>
+<span class="linenos" data-linenos="102 "></span>    <span class="sd">&quot;&quot;&quot;State machine to replace content with user-specified handlers.</span>
+<span class="linenos" data-linenos="103 "></span>
+<span class="linenos" data-linenos="104 "></span><span class="sd">    Uses `{cts}` and `{cte}` to demarcate sections (short for calcipy_template start|end)</span>
+<span class="linenos" data-linenos="105 "></span>
+<span class="linenos" data-linenos="106 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="107 "></span>
+<span class="linenos" data-linenos="108 "></span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="109 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the state machine.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="110 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">state_user</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span>
+<span class="linenos" data-linenos="111 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">state_auto</span> <span class="o">=</span> <span class="s1">&#39;autoformatted&#39;</span>
+<span class="linenos" data-linenos="112 "></span>        <span class="n">transitions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos" data-linenos="113 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="114 "></span>                <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;start_auto&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="115 "></span>                <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_user</span><span class="p">,</span>
+<span class="linenos" data-linenos="116 "></span>                <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_auto</span><span class="p">,</span>
+<span class="linenos" data-linenos="117 "></span>            <span class="p">},</span> <span class="p">{</span>
+<span class="linenos" data-linenos="118 "></span>                <span class="s1">&#39;trigger&#39;</span><span class="p">:</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="119 "></span>                <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_auto</span><span class="p">,</span>
+<span class="linenos" data-linenos="120 "></span>                <span class="s1">&#39;dest&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_user</span><span class="p">,</span>
+<span class="linenos" data-linenos="121 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="122 "></span>        <span class="p">]</span>
+<span class="linenos" data-linenos="123 "></span>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+<span class="linenos" data-linenos="124 "></span>            <span class="n">states</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">state_user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_auto</span><span class="p">],</span>
+<span class="linenos" data-linenos="125 "></span>            <span class="n">initial</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">state_user</span><span class="p">,</span>
+<span class="linenos" data-linenos="126 "></span>            <span class="n">transitions</span><span class="o">=</span><span class="n">transitions</span><span class="p">,</span>
+<span class="linenos" data-linenos="127 "></span>        <span class="p">)</span>
+<span class="linenos" data-linenos="128 "></span>
+<span class="linenos" data-linenos="129 "></span>    <span class="k">def</span> <span class="nf">_parse_line</span><span class="p">(</span>
+<span class="linenos" data-linenos="130 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">handler_lookup</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span> <span class="nb">str</span><span class="p">]],</span>
+<span class="linenos" data-linenos="131 "></span>        <span class="n">path_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="132 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="133 "></span>        <span class="sd">&quot;&quot;&quot;Parse lines and insert new_text based on provided handler_lookup.</span>
+<span class="linenos" data-linenos="134 "></span>
+<span class="linenos" data-linenos="135 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="136 "></span><span class="sd">            line: single line</span>
+<span class="linenos" data-linenos="137 "></span><span class="sd">            handler_lookup: Lookup dictionary for autoformatted sections</span>
+<span class="linenos" data-linenos="138 "></span><span class="sd">            path_file: optional path to the file. Only useful for debugging</span>
+<span class="linenos" data-linenos="139 "></span>
+<span class="linenos" data-linenos="140 "></span><span class="sd">        Returns:</span>
+<span class="linenos" data-linenos="141 "></span><span class="sd">            List[str]: modified list of strings</span>
+<span class="linenos" data-linenos="142 "></span>
+<span class="linenos" data-linenos="143 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="144 "></span>        <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos" data-linenos="145 "></span>        <span class="k">if</span> <span class="s1">&#39;</span><span class="si">{cte}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_auto</span><span class="p">:</span>  <span class="c1"># end</span>
+<span class="linenos" data-linenos="146 "></span>            <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+<span class="linenos" data-linenos="147 "></span>        <span class="k">elif</span> <span class="s1">&#39;</span><span class="si">{cts}</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>  <span class="c1"># start</span>
+<span class="linenos" data-linenos="148 "></span>            <span class="bp">self</span><span class="o">.</span><span class="n">start_auto</span><span class="p">()</span>
+<span class="linenos" data-linenos="149 "></span>            <span class="n">matches</span> <span class="o">=</span> <span class="p">[</span><span class="n">text_match</span> <span class="k">for</span> <span class="n">text_match</span> <span class="ow">in</span> <span class="n">handler_lookup</span> <span class="k">if</span> <span class="n">text_match</span> <span class="ow">in</span> <span class="n">line</span><span class="p">]</span>
+<span class="linenos" data-linenos="150 "></span>            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">matches</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="linenos" data-linenos="151 "></span>                <span class="n">lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">handler_lookup</span><span class="p">[</span><span class="n">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]](</span><span class="n">line</span><span class="p">,</span> <span class="n">path_file</span><span class="p">))</span>
+<span class="linenos" data-linenos="152 "></span>            <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="153 "></span>                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Could not parse: </span><span class="si">{line}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">)</span>
+<span class="linenos" data-linenos="154 "></span>                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="linenos" data-linenos="155 "></span>                <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+<span class="linenos" data-linenos="156 "></span>        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">state_user</span><span class="p">:</span>
+<span class="linenos" data-linenos="157 "></span>            <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="linenos" data-linenos="158 "></span>        <span class="c1"># else: discard the lines in the auto-section</span>
+<span class="linenos" data-linenos="159 "></span>        <span class="k">return</span> <span class="n">lines</span>
+<span class="linenos" data-linenos="160 "></span>
+<span class="linenos" data-linenos="161 "></span>    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span>
+<span class="linenos" data-linenos="162 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">handler_lookup</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span> <span class="nb">str</span><span class="p">]],</span>
+<span class="linenos" data-linenos="163 "></span>        <span class="n">path_file</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="164 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="165 "></span>        <span class="sd">&quot;&quot;&quot;Parse lines and insert new_text based on provided handler_lookup.</span>
+<span class="linenos" data-linenos="166 "></span>
+<span class="linenos" data-linenos="167 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="168 "></span><span class="sd">            lines: list of string from source file</span>
+<span class="linenos" data-linenos="169 "></span><span class="sd">            handler_lookup: Lookup dictionary for autoformatted sections</span>
+<span class="linenos" data-linenos="170 "></span><span class="sd">            path_file: optional path to the file. Only useful for debugging</span>
+<span class="linenos" data-linenos="171 "></span>
+<span class="linenos" data-linenos="172 "></span><span class="sd">        Returns:</span>
+<span class="linenos" data-linenos="173 "></span><span class="sd">            List[str]: modified list of strings</span>
+<span class="linenos" data-linenos="174 "></span>
+<span class="linenos" data-linenos="175 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="176 "></span>        <span class="n">updated_lines</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos" data-linenos="177 "></span>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+<span class="linenos" data-linenos="178 "></span>            <span class="n">updated_lines</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parse_line</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">handler_lookup</span><span class="p">,</span> <span class="n">path_file</span><span class="p">))</span>
+<span class="linenos" data-linenos="179 "></span>        <span class="k">return</span> <span class="n">updated_lines</span>
+<span class="linenos" data-linenos="180 "></span>
+<span class="linenos" data-linenos="181 "></span>
+<span class="linenos" data-linenos="182 "></span><span class="n">_RE_VAR_COMMENT_HTML</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;!-- </span><span class="si">{cts}</span><span class="s1"> (?P&lt;key&gt;[^=]+)=(?P&lt;value&gt;[^;]+);&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="183 "></span><span class="sd">&quot;&quot;&quot;Regex for extracting the vairable from an HTML code comment.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="184 "></span>
+<span class="linenos" data-linenos="185 "></span>
+<span class="linenos" data-linenos="186 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="187 "></span><span class="k">def</span> <span class="nf">_parse_var_comment</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">matcher</span><span class="p">:</span> <span class="n">Pattern</span> <span class="o">=</span> <span class="n">_RE_VAR_COMMENT_HTML</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="188 "></span>    <span class="sd">&quot;&quot;&quot;Parse the variable from a matching comment.</span>
+<span class="linenos" data-linenos="189 "></span>
+<span class="linenos" data-linenos="190 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="191 "></span><span class="sd">        line: string from source file</span>
+<span class="linenos" data-linenos="192 "></span><span class="sd">        matcher: regex pattern to match. Default is `_RE_VAR_COMMENT_HTML`</span>
+<span class="linenos" data-linenos="193 "></span>
+<span class="linenos" data-linenos="194 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="195 "></span><span class="sd">        Dict[str, str]: single key and value pair based on the parsed comment</span>
+<span class="linenos" data-linenos="196 "></span>
+<span class="linenos" data-linenos="197 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="198 "></span>    <span class="n">match</span> <span class="o">=</span> <span class="n">matcher</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+<span class="linenos" data-linenos="199 "></span>    <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+<span class="linenos" data-linenos="200 "></span>        <span class="n">matches</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+<span class="linenos" data-linenos="201 "></span>        <span class="k">return</span> <span class="p">{</span><span class="n">matches</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]:</span> <span class="n">matches</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]}</span>
+<span class="linenos" data-linenos="202 "></span>    <span class="k">return</span> <span class="p">{}</span>
+<span class="linenos" data-linenos="203 "></span>
+<span class="linenos" data-linenos="204 "></span>
+<span class="linenos" data-linenos="205 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="206 "></span><span class="k">def</span> <span class="nf">_handle_source_file</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="207 "></span>    <span class="sd">&quot;&quot;&quot;Replace commented sections in README with linked file contents.</span>
+<span class="linenos" data-linenos="208 "></span>
+<span class="linenos" data-linenos="209 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="210 "></span><span class="sd">        line: first line of the section</span>
+<span class="linenos" data-linenos="211 "></span><span class="sd">        path_file: path to the file that contained the string</span>
+<span class="linenos" data-linenos="212 "></span>
+<span class="linenos" data-linenos="213 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="214 "></span><span class="sd">        List[str]: list of auto-formatted text</span>
+<span class="linenos" data-linenos="215 "></span>
+<span class="linenos" data-linenos="216 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="217 "></span>    <span class="n">key</span><span class="p">,</span> <span class="n">path_rel</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">_parse_var_comment</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()][</span><span class="mi">0</span><span class="p">]</span>
+<span class="linenos" data-linenos="218 "></span>    <span class="n">path_base</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span> <span class="k">if</span> <span class="n">path_rel</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">path_file</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="linenos" data-linenos="219 "></span>    <span class="n">path_source</span> <span class="o">=</span> <span class="n">path_base</span> <span class="o">/</span> <span class="n">path_rel</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="220 "></span>    <span class="n">language</span> <span class="o">=</span> <span class="n">path_source</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="221 "></span>    <span class="n">lines_source</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;```</span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">read_lines</span><span class="p">(</span><span class="n">path_source</span><span class="p">),</span> <span class="s1">&#39;```&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="222 "></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">path_source</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<span class="linenos" data-linenos="223 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not locate: </span><span class="si">{</span><span class="n">path_source</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="224 "></span>
+<span class="linenos" data-linenos="225 "></span>    <span class="n">line_start</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;!-- </span><span class="se">{{</span><span class="s1">cts</span><span class="se">}}</span><span class="s1"> </span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s1">=</span><span class="si">{</span><span class="n">path_rel</span><span class="si">}</span><span class="s1">; --&gt;&#39;</span>
+<span class="linenos" data-linenos="226 "></span>    <span class="n">line_end</span> <span class="o">=</span> <span class="s1">&#39;&lt;!-- </span><span class="si">{cte}</span><span class="s1"> --&gt;&#39;</span>
+<span class="linenos" data-linenos="227 "></span>    <span class="k">return</span> <span class="p">[</span><span class="n">line_start</span><span class="p">]</span> <span class="o">+</span> <span class="n">lines_source</span> <span class="o">+</span> <span class="p">[</span><span class="n">line_end</span><span class="p">]</span>
+<span class="linenos" data-linenos="228 "></span>
+<span class="linenos" data-linenos="229 "></span>
+<span class="linenos" data-linenos="230 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="231 "></span><span class="k">def</span> <span class="nf">_format_cov_table</span><span class="p">(</span><span class="n">coverage_data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="232 "></span>    <span class="sd">&quot;&quot;&quot;Format code coverage data table as markdown.</span>
+<span class="linenos" data-linenos="233 "></span>
+<span class="linenos" data-linenos="234 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="235 "></span><span class="sd">        coverage_data: dictionary created by `python -m coverage json`</span>
+<span class="linenos" data-linenos="236 "></span>
+<span class="linenos" data-linenos="237 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="238 "></span><span class="sd">        List[str]: list of string lines to insert</span>
+<span class="linenos" data-linenos="239 "></span>
+<span class="linenos" data-linenos="240 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="241 "></span>    <span class="n">col_key_map</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos" data-linenos="242 "></span>        <span class="s1">&#39;Statements&#39;</span><span class="p">:</span> <span class="s1">&#39;num_statements&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="243 "></span>        <span class="s1">&#39;Missing&#39;</span><span class="p">:</span> <span class="s1">&#39;missing_lines&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="244 "></span>        <span class="s1">&#39;Excluded&#39;</span><span class="p">:</span> <span class="s1">&#39;excluded_lines&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="245 "></span>        <span class="s1">&#39;Coverage&#39;</span><span class="p">:</span> <span class="s1">&#39;percent_covered&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="246 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="247 "></span>    <span class="n">records</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># noqa: ECE001</span>
+<span class="linenos" data-linenos="248 "></span>        <span class="p">{</span>
+<span class="linenos" data-linenos="249 "></span>            <span class="o">**</span><span class="p">{</span><span class="s1">&#39;File&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;`</span><span class="si">{</span><span class="n">Path</span><span class="p">(</span><span class="n">path_file</span><span class="p">)</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span><span class="si">}</span><span class="s1">`&#39;</span><span class="p">},</span>
+<span class="linenos" data-linenos="250 "></span>            <span class="o">**</span><span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="n">file_obj</span><span class="p">[</span><span class="s1">&#39;summary&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">col_key_map</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+<span class="linenos" data-linenos="251 "></span>        <span class="p">}</span> <span class="k">for</span> <span class="n">path_file</span><span class="p">,</span> <span class="n">file_obj</span> <span class="ow">in</span> <span class="n">coverage_data</span><span class="p">[</span><span class="s1">&#39;files&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="linenos" data-linenos="252 "></span>    <span class="p">]</span>
+<span class="linenos" data-linenos="253 "></span>    <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+<span class="linenos" data-linenos="254 "></span>        <span class="o">**</span><span class="p">{</span><span class="s1">&#39;File&#39;</span><span class="p">:</span> <span class="s1">&#39;**Totals**&#39;</span><span class="p">},</span>
+<span class="linenos" data-linenos="255 "></span>        <span class="o">**</span><span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="n">coverage_data</span><span class="p">[</span><span class="s1">&#39;totals&#39;</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">col_key_map</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+<span class="linenos" data-linenos="256 "></span>    <span class="p">})</span>
+<span class="linenos" data-linenos="257 "></span>    <span class="c1"># Format table for Github Markdown</span>
+<span class="linenos" data-linenos="258 "></span>    <span class="n">df_cov</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="linenos" data-linenos="259 "></span>    <span class="n">df_cov</span><span class="p">[</span><span class="s1">&#39;Coverage&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cov</span><span class="p">[</span><span class="s1">&#39;Coverage&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span>
+<span class="linenos" data-linenos="260 "></span>    <span class="n">lines_table</span> <span class="o">=</span> <span class="n">df_cov</span><span class="o">.</span><span class="n">to_markdown</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># Note: requires optional &quot;tabulate&quot;</span>
+<span class="linenos" data-linenos="261 "></span>    <span class="n">lines_table</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Generated on: </span><span class="si">{</span><span class="n">coverage_data</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">][</span><span class="s1">&#39;timestamp&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">])</span>
+<span class="linenos" data-linenos="262 "></span>    <span class="k">return</span> <span class="n">lines_table</span>
+<span class="linenos" data-linenos="263 "></span>
+<span class="linenos" data-linenos="264 "></span>
+<span class="linenos" data-linenos="265 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="266 "></span><span class="k">def</span> <span class="nf">_handle_coverage</span><span class="p">(</span><span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="linenos" data-linenos="267 "></span>    <span class="sd">&quot;&quot;&quot;Read the coverage.json file and write a Markdown table to the README file.</span>
+<span class="linenos" data-linenos="268 "></span>
+<span class="linenos" data-linenos="269 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="270 "></span><span class="sd">        line: first line of the section</span>
+<span class="linenos" data-linenos="271 "></span><span class="sd">        path_file: path to the file that contained the string</span>
+<span class="linenos" data-linenos="272 "></span>
+<span class="linenos" data-linenos="273 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="274 "></span><span class="sd">        List[str]: list of auto-formatted text</span>
+<span class="linenos" data-linenos="275 "></span>
+<span class="linenos" data-linenos="276 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="277 "></span>    <span class="n">path_coverage</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;coverage.json&#39;</span>  <span class="c1"># Created by &quot;task_coverage&quot;</span>
+<span class="linenos" data-linenos="278 "></span>    <span class="n">lines_cov</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="linenos" data-linenos="279 "></span>    <span class="k">if</span> <span class="n">path_coverage</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<span class="linenos" data-linenos="280 "></span>        <span class="n">coverage_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">path_coverage</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+<span class="linenos" data-linenos="281 "></span>        <span class="n">lines_cov</span> <span class="o">=</span> <span class="n">_format_cov_table</span><span class="p">(</span><span class="n">coverage_data</span><span class="p">)</span>
+<span class="linenos" data-linenos="282 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="283 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Could not locate: </span><span class="si">{</span><span class="n">path_coverage</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="284 "></span>
+<span class="linenos" data-linenos="285 "></span>    <span class="n">line_end</span> <span class="o">=</span> <span class="s1">&#39;&lt;!-- </span><span class="si">{cte}</span><span class="s1"> --&gt;&#39;</span>
+<span class="linenos" data-linenos="286 "></span>    <span class="k">return</span> <span class="p">[</span><span class="n">line</span><span class="p">]</span> <span class="o">+</span> <span class="n">lines_cov</span> <span class="o">+</span> <span class="p">[</span><span class="n">line_end</span><span class="p">]</span>
+<span class="linenos" data-linenos="287 "></span>
+<span class="linenos" data-linenos="288 "></span>
+<span class="linenos" data-linenos="289 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="290 "></span><span class="k">def</span> <span class="nf">write_autoformatted_md_sections</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="291 "></span>    <span class="sd">&quot;&quot;&quot;Populate the auto-formatted sections of markdown files with user-configured logic.</span>
+<span class="linenos" data-linenos="292 "></span>
+<span class="linenos" data-linenos="293 "></span><span class="sd">    Raises:</span>
+<span class="linenos" data-linenos="294 "></span><span class="sd">        RuntimeError: if `DG.doc.handler_lookup` hasn&#39;t ben configured. See `_ensure_handler_lookup`</span>
+<span class="linenos" data-linenos="295 "></span>
+<span class="linenos" data-linenos="296 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="297 "></span>    <span class="k">if</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="298 "></span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;The &quot;DG.doc.handler_lookup&quot; dictionary has not been created&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="299 "></span>
+<span class="linenos" data-linenos="300 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;&gt; </span><span class="si">{paths_md}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">paths_md</span><span class="o">=</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">paths_md</span><span class="p">)</span>
+<span class="linenos" data-linenos="301 "></span>    <span class="k">for</span> <span class="n">path_md</span> <span class="ow">in</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">paths_md</span><span class="p">:</span>
+<span class="linenos" data-linenos="302 "></span>        <span class="n">md_lines</span> <span class="o">=</span> <span class="n">_ReplacementMachine</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">read_lines</span><span class="p">(</span><span class="n">path_md</span><span class="p">),</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span><span class="p">,</span> <span class="n">path_md</span><span class="p">)</span>
+<span class="linenos" data-linenos="303 "></span>        <span class="n">path_md</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">md_lines</span><span class="p">))</span>
+<span class="linenos" data-linenos="304 "></span>
+<span class="linenos" data-linenos="305 "></span>
+<span class="linenos" data-linenos="306 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos="307 "></span><span class="c1"># Main Documentation Tasks</span>
+<span class="linenos" data-linenos="308 "></span>
+<span class="linenos" data-linenos="309 "></span>
+<span class="linenos" data-linenos="310 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="311 "></span><span class="k">def</span> <span class="nf">_ensure_handler_lookup</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="312 "></span>    <span class="sd">&quot;&quot;&quot;Configure the handler lookup if not already configured.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="313 "></span>    <span class="k">if</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="314 "></span>        <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos" data-linenos="315 "></span>            <span class="s1">&#39;COVERAGE &#39;</span><span class="p">:</span> <span class="n">_handle_coverage</span><span class="p">,</span>
+<span class="linenos" data-linenos="316 "></span>            <span class="s1">&#39;SOURCE_FILE=&#39;</span><span class="p">:</span> <span class="n">_handle_source_file</span><span class="p">,</span>
+<span class="linenos" data-linenos="317 "></span>        <span class="p">}</span>
+<span class="linenos" data-linenos="318 "></span>
+<span class="linenos" data-linenos="319 "></span>
+<span class="linenos" data-linenos="320 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="321 "></span><span class="k">def</span> <span class="nf">task_document</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="322 "></span>    <span class="sd">&quot;&quot;&quot;Build the HTML documentation.</span>
+<span class="linenos" data-linenos="323 "></span>
+<span class="linenos" data-linenos="324 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="325 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="326 "></span>
+<span class="linenos" data-linenos="327 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="328 "></span>    <span class="n">_ensure_handler_lookup</span><span class="p">()</span>
+<span class="linenos" data-linenos="329 "></span>    <span class="n">pdoc_out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--output_dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s1">/modules --overwrite&#39;</span>
+<span class="linenos" data-linenos="330 "></span>    <span class="n">pdoc_template</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--template_dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">calcipy_dir</span><span class="si">}</span><span class="s1">/doit_tasks/templates&#39;</span>
+<span class="linenos" data-linenos="331 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="332 "></span>        <span class="p">(</span><span class="n">write_autoformatted_md_sections</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="333 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pdocs as_markdown </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">pdoc_out</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">pdoc_template</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="334 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run mkdocs build --site-dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">path_out</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="335 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos="336 "></span>
+<span class="linenos" data-linenos="337 "></span>
+<span class="linenos" data-linenos="338 "></span><span class="k">def</span> <span class="nf">_is_mkdocs_local</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="linenos" data-linenos="339 "></span>    <span class="sd">&quot;&quot;&quot;Check if mkdocs is configured for local output.</span>
+<span class="linenos" data-linenos="340 "></span>
+<span class="linenos" data-linenos="341 "></span><span class="sd">    See notes on local-link configuration here: https://github.com/timothycrosley/portray/issues/65</span>
+<span class="linenos" data-linenos="342 "></span>
+<span class="linenos" data-linenos="343 "></span><span class="sd">    Additional information on using local search here: https://github.com/wilhelmer/mkdocs-localsearch</span>
+<span class="linenos" data-linenos="344 "></span>
+<span class="linenos" data-linenos="345 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="346 "></span><span class="sd">        bool: True if configured for local file output rather than hosted</span>
+<span class="linenos" data-linenos="347 "></span>
+<span class="linenos" data-linenos="348 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="349 "></span>    <span class="n">mkdocs_config</span> <span class="o">=</span> <span class="n">_read_yaml_file</span><span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span> <span class="o">/</span> <span class="n">_MKDOCS_CONFIG_NAME</span><span class="p">)</span>
+<span class="linenos" data-linenos="350 "></span>    <span class="k">return</span> <span class="n">mkdocs_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;use_directory_urls&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+<span class="linenos" data-linenos="351 "></span>
+<span class="linenos" data-linenos="352 "></span>
+<span class="linenos" data-linenos="353 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="354 "></span><span class="k">def</span> <span class="nf">task_open_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="355 "></span>    <span class="sd">&quot;&quot;&quot;Open the documentation files in the default browser.</span>
+<span class="linenos" data-linenos="356 "></span>
+<span class="linenos" data-linenos="357 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="358 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="359 "></span>
+<span class="linenos" data-linenos="360 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="361 "></span>    <span class="k">if</span> <span class="n">_is_mkdocs_local</span><span class="p">():</span>  <span class="c1"># pragma: no cover</span>
+<span class="linenos" data-linenos="362 "></span>        <span class="n">path_doc_index</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">path_out</span> <span class="o">/</span> <span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span> <span class="o">/</span> <span class="s1">&#39;index.html&#39;</span>
+<span class="linenos" data-linenos="363 "></span>        <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="364 "></span>            <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">path_doc_index</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="365 "></span>        <span class="p">])</span>
+<span class="linenos" data-linenos="366 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="367 "></span>        <span class="p">(</span><span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="368 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run mkdocs serve --dirtyreload&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="369 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos="370 "></span>
+<span class="linenos" data-linenos="371 "></span>
+<span class="linenos" data-linenos="372 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="373 "></span><span class="k">def</span> <span class="nf">task_deploy_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="374 "></span>    <span class="sd">&quot;&quot;&quot;Deploy docs to the Github `gh-pages` branch.</span>
+<span class="linenos" data-linenos="375 "></span>
+<span class="linenos" data-linenos="376 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="377 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="378 "></span>
+<span class="linenos" data-linenos="379 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="380 "></span>    <span class="k">if</span> <span class="n">_is_mkdocs_local</span><span class="p">():</span>  <span class="c1"># pragma: no cover</span>
+<span class="linenos" data-linenos="381 "></span>        <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="382 "></span>            <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Deploy cannot be used with mkdocs built with local-links&#39;</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="383 "></span>        <span class="p">])</span>
+<span class="linenos" data-linenos="384 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span><span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run mkdocs gh-deploy&#39;</span><span class="p">)])</span>
+</code></pre></div>
+</details>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
+<h3 id="task_cl_bump">task_cl_bump<a class="headerlink" href="#task_cl_bump" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_cl_bump</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Bumps project version based on commits &amp; settings in pyproject.toml.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_cl_bump</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Bumps project version based on commits &amp; settings in pyproject.toml.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --annotated-tag&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="p">])</span>
+</code></pre></div>
+</details>
+<h3 id="task_cl_bump_pre">task_cl_bump_pre<a class="headerlink" href="#task_cl_bump_pre" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_cl_bump_pre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Bump with specified pre-release tag.</p>
+<p>Example: <code>doit run cl_bump_pre -p alpha</code> or <code>doit run cl_bump_pre -p rc</code></p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_cl_bump_pre</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Bump with specified pre-release tag.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Example: `doit run cl_bump_pre -p alpha` or `doit run cl_bump_pre -p rc`</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 9 "></span>
+<span class="linenos" data-linenos="10 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --prerelease </span><span class="si">%(prerelease)s</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="15 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;prerelease&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;prerelease&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="s1">&#39;Specify prerelease version for bump (alpha, beta, rc)&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="p">}]</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="k">return</span> <span class="n">task</span>
+</code></pre></div>
+</details>
+<h3 id="task_cl_write">task_cl_write<a class="headerlink" href="#task_cl_write" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Write a Changelog file with the raw Git history.</p>
+<p>Resources:</p>
+<ul>
+<li>https://keepachangelog.com/en/1.0.0/</li>
+<li>https://www.conventionalcommits.org/en/v1.0.0/</li>
+<li>https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message</li>
+<li>https://chris.beams.io/posts/git-commit/</li>
+<li>https://semver.org/</li>
+<li>https://calver.org/</li>
+</ul>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Write a Changelog file with the raw Git history.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Resources:</span>
+<span class="linenos" data-linenos=" 6 "></span>
+<span class="linenos" data-linenos=" 7 "></span><span class="sd">    - https://keepachangelog.com/en/1.0.0/</span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    - https://www.conventionalcommits.org/en/v1.0.0/</span>
+<span class="linenos" data-linenos=" 9 "></span><span class="sd">    - https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message</span>
+<span class="linenos" data-linenos="10 "></span><span class="sd">    - https://chris.beams.io/posts/git-commit/</span>
+<span class="linenos" data-linenos="11 "></span><span class="sd">    - https://semver.org/</span>
+<span class="linenos" data-linenos="12 "></span><span class="sd">    - https://calver.org/</span>
+<span class="linenos" data-linenos="13 "></span>
+<span class="linenos" data-linenos="14 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="15 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="16 "></span>
+<span class="linenos" data-linenos="17 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="18 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="s1">&#39;poetry run cz changelog&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="21 "></span>    <span class="p">])</span>
+</code></pre></div>
+</details>
+<h3 id="task_deploy_docs">task_deploy_docs<a class="headerlink" href="#task_deploy_docs" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_deploy_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Deploy docs to the Github <code>gh-pages</code> branch.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_deploy_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Deploy docs to the Github `gh-pages` branch.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">if</span> <span class="n">_is_mkdocs_local</span><span class="p">():</span>  <span class="c1"># pragma: no cover</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="11 "></span>            <span class="p">(</span><span class="ne">NotImplementedError</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;Deploy cannot be used with mkdocs built with local-links&#39;</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="p">])</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span><span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run mkdocs gh-deploy&#39;</span><span class="p">)])</span>
+</code></pre></div>
+</details>
+<h3 id="task_document">task_document<a class="headerlink" href="#task_document" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_document</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Build the HTML documentation.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_document</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Build the HTML documentation.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="n">_ensure_handler_lookup</span><span class="p">()</span>
+<span class="linenos" data-linenos="10 "></span>    <span class="n">pdoc_out</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--output_dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">parent</span><span class="si">}</span><span class="s1">/modules --overwrite&#39;</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="n">pdoc_template</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--template_dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">calcipy_dir</span><span class="si">}</span><span class="s1">/doit_tasks/templates&#39;</span>
+<span class="linenos" data-linenos="12 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">(</span><span class="n">write_autoformatted_md_sections</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pdocs as_markdown </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">pdoc_out</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">pdoc_template</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run mkdocs build --site-dir </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">path_out</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="16 "></span>    <span class="p">])</span>
+</code></pre></div>
+</details>
+<h3 id="task_open_docs">task_open_docs<a class="headerlink" href="#task_open_docs" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_open_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
+</code></pre></div>
+<p>Open the documentation files in the default browser.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DoitTask</td>
+<td>doit task</td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_open_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Open the documentation files in the default browser.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">if</span> <span class="n">_is_mkdocs_local</span><span class="p">():</span>  <span class="c1"># pragma: no cover</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="n">path_doc_index</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">path_out</span> <span class="o">/</span> <span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span> <span class="o">/</span> <span class="s1">&#39;index.html&#39;</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="12 "></span>            <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">path_doc_index</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="p">])</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="p">(</span><span class="n">webbrowser</span><span class="o">.</span><span class="n">open</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;http://localhost:8000&#39;</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run mkdocs serve --dirtyreload&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="17 "></span>    <span class="p">])</span>
+</code></pre></div>
+</details>
+<h3 id="write_autoformatted_md_sections">write_autoformatted_md_sections<a class="headerlink" href="#write_autoformatted_md_sections" title="Permanent link">⚓︎</a></h3>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">write_autoformatted_md_sections</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span>
+</code></pre></div>
+<p>Populate the auto-formatted sections of markdown files with user-configured logic.</p>
+<p><strong>Raises:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RuntimeError</td>
+<td>if <code>DG.doc.handler_lookup</code> hasn&rsquo;t ben configured. See <code>_ensure_handler_lookup</code></td>
+</tr>
+</tbody>
+</table>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">write_autoformatted_md_sections</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Populate the auto-formatted sections of markdown files with user-configured logic.</span>
+<span class="linenos" data-linenos=" 4 "></span>
+<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Raises:</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="sd">        RuntimeError: if `DG.doc.handler_lookup` hasn&#39;t ben configured. See `_ensure_handler_lookup`</span>
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos=" 9 "></span>    <span class="k">if</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;The &quot;DG.doc.handler_lookup&quot; dictionary has not been created&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="11 "></span>
+<span class="linenos" data-linenos="12 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;&gt; </span><span class="si">{paths_md}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">paths_md</span><span class="o">=</span><span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">paths_md</span><span class="p">)</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="k">for</span> <span class="n">path_md</span> <span class="ow">in</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">paths_md</span><span class="p">:</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="n">md_lines</span> <span class="o">=</span> <span class="n">_ReplacementMachine</span><span class="p">()</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">read_lines</span><span class="p">(</span><span class="n">path_md</span><span class="p">),</span> <span class="n">DG</span><span class="o">.</span><span class="n">doc</span><span class="o">.</span><span class="n">handler_lookup</span><span class="p">,</span> <span class="n">path_md</span><span class="p">)</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">path_md</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">md_lines</span><span class="p">))</span>
+</code></pre></div>
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../code_tag_collector/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              calcipy.doit_tasks.code_tag_collector
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../doit_globals/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              calcipy.doit_tasks.doit_globals
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "toc.autohide"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>
