@@ -1,0 +1,1634 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="calcipy project documentation">
+      
+      
+      
+        <meta name="author" content="Kyle King">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
+    
+    
+      
+        <title>CHANGELOG - calcipy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.875de78c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="green">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unreleased" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="calcipy" class="md-header__button md-logo" aria-label="calcipy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            calcipy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CHANGELOG
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="green" type="radio" name="__palette" id="__palette_1">
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/kyleking/calcipy/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/calcipy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      calcipy
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Docs
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="calcipy" class="md-nav__button md-logo" aria-label="calcipy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    calcipy
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/kyleking/calcipy/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    kyleking/calcipy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        calcipy
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Docs
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Docs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Docs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          CHANGELOG
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        CHANGELOG
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    Unreleased
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreleased">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#refactor" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2021020-2021-06-05" class="md-nav__link">
+    2021.0.2.0 (2021-06-05)
+  </a>
+  
+    <nav class="md-nav" aria-label="2021.0.2.0 (2021-06-05)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_1" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    Perf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2021020a0-2021-02-11" class="md-nav__link">
+    2021.0.2.0a0 (2021-02-11)
+  </a>
+  
+    <nav class="md-nav" aria-label="2021.0.2.0a0 (2021-02-11)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat_1" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_1" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_2" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2020-12-19" class="md-nav__link">
+    0.1.0 (2020-12-19)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1.0 (2020-12-19)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat_2" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_3" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-old" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#003-2020-12-10" class="md-nav__link">
+    0.0.3 (2020-12-10)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.3 (2020-12-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_1" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_1" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old_1" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#002-2020-11-14" class="md-nav__link">
+    0.0.2 (2020-11-14)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.2 (2020-11-14)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_2" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_2" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#001-2020-11-14" class="md-nav__link">
+    0.0.1 (2020-11-14)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.1 (2020-11-14)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_3" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_3" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old_2" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CODE_OF_CONDUCT/" class="md-nav__link">
+        Contributor Covenant Code of Conduct
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CODE_TAG_SUMMARY/" class="md-nav__link">
+        Task Summary
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DEVELOPER_GUIDE/" class="md-nav__link">
+        Developer Notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        Security
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STYLE_GUIDE/" class="md-nav__link">
+        Personal Style Guides
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8" type="checkbox" id="__nav_2_8" >
+      
+      <label class="md-nav__link" for="__nav_2_8">
+        Modules
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Modules" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Modules
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8_1" type="checkbox" id="__nav_2_8_1" >
+      
+      <label class="md-nav__link" for="__nav_2_8_1">
+        Calcipy
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Calcipy" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          Calcipy
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/" class="md-nav__link">
+        calcipy
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/file_helpers/" class="md-nav__link">
+        calcipy.file_helpers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/log_helpers/" class="md-nav__link">
+        calcipy.log_helpers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/wrappers/" class="md-nav__link">
+        calcipy.wrappers
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8_1_5" type="checkbox" id="__nav_2_8_1_5" >
+      
+      <label class="md-nav__link" for="__nav_2_8_1_5">
+        Dev
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Dev" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/dev/" class="md-nav__link">
+        calcipy.dev
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/dev/conftest/" class="md-nav__link">
+        calcipy.dev.conftest
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/dev/noxfile/" class="md-nav__link">
+        calcipy.dev.noxfile
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_8_1_6" type="checkbox" id="__nav_2_8_1_6" >
+      
+      <label class="md-nav__link" for="__nav_2_8_1_6">
+        Doit tasks
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Doit tasks" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_8_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          Doit tasks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/" class="md-nav__link">
+        calcipy.doit_tasks
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/base/" class="md-nav__link">
+        calcipy.doit_tasks.base
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/code_tag_collector/" class="md-nav__link">
+        calcipy.doit_tasks.code_tag_collector
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/doc/" class="md-nav__link">
+        calcipy.doit_tasks.doc
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/doit_globals/" class="md-nav__link">
+        calcipy.doit_tasks.doit_globals
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/file_search/" class="md-nav__link">
+        calcipy.doit_tasks.file_search
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/lint/" class="md-nav__link">
+        calcipy.doit_tasks.lint
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/packaging/" class="md-nav__link">
+        calcipy.doit_tasks.packaging
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/summary_reporter/" class="md-nav__link">
+        calcipy.doit_tasks.summary_reporter
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/calcipy/doit_tasks/test/" class="md-nav__link">
+        calcipy.doit_tasks.test
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    Unreleased
+  </a>
+  
+    <nav class="md-nav" aria-label="Unreleased">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#refactor" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2021020-2021-06-05" class="md-nav__link">
+    2021.0.2.0 (2021-06-05)
+  </a>
+  
+    <nav class="md-nav" aria-label="2021.0.2.0 (2021-06-05)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_1" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perf" class="md-nav__link">
+    Perf
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2021020a0-2021-02-11" class="md-nav__link">
+    2021.0.2.0a0 (2021-02-11)
+  </a>
+  
+    <nav class="md-nav" aria-label="2021.0.2.0a0 (2021-02-11)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat_1" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix_1" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_2" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#010-2020-12-19" class="md-nav__link">
+    0.1.0 (2020-12-19)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1.0 (2020-12-19)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat_2" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refactor_3" class="md-nav__link">
+    Refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-old" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#003-2020-12-10" class="md-nav__link">
+    0.0.3 (2020-12-10)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.3 (2020-12-10)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_1" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_1" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old_1" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#002-2020-11-14" class="md-nav__link">
+    0.0.2 (2020-11-14)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.2 (2020-11-14)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_2" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_2" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#001-2020-11-14" class="md-nav__link">
+    0.0.1 (2020-11-14)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.0.1 (2020-11-14)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#new-old_3" class="md-nav__link">
+    New (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-old_3" class="md-nav__link">
+    Change (Old)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix-old_2" class="md-nav__link">
+    Fix (Old)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/kyleking/calcipy/edit/main/docs/docs/CHANGELOG.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  <h1>CHANGELOG</h1>
+                
+                <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">⚓︎</a></h2>
+<h3 id="refactor">Refactor<a class="headerlink" href="#refactor" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>apply 0.0.10 template</li>
+</ul>
+<h2 id="2021020-2021-06-05">2021.0.2.0 (2021-06-05)<a class="headerlink" href="#2021020-2021-06-05" title="Permanent link">⚓︎</a></h2>
+<h3 id="feat">Feat<a class="headerlink" href="#feat" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li><strong>#58</strong>: implement doc task and merge serve_docs</li>
+<li>make loading YAML files more generic</li>
+<li>create doit summary report</li>
+<li>add task to check license compliance</li>
+<li>move lock into doit tasks with file-dependency</li>
+<li><strong>#38</strong>: re-implement coverage and write source</li>
+<li>drop subprocess-tee</li>
+<li><strong>#36</strong>: WIP implementation of doc formatting</li>
+<li>implement publish tasks</li>
+<li>add pip outdated to stale check</li>
+<li>implement check for stale packages</li>
+<li>begin implementing stale package check</li>
+<li>smart default tasks for CI vs. local</li>
+<li>make nox imports optional</li>
+<li>try doit rather than CWD for initial path</li>
+<li>move noxfile into calcipy</li>
+<li>integrate nox to doit tasks</li>
+<li>WIP check for stale dep &amp; placeholder publish</li>
+<li>add additional configuration options</li>
+<li>add nox tasks</li>
+<li>add detect-secrets as pre-commit</li>
+<li>lint non-Python files</li>
+<li>read doc_dir from copier file</li>
+<li>make most settings configurable</li>
+<li>added dotted-dict wrapper of Box</li>
+<li>delete old files rather than full directory</li>
+<li>filter with glob-like ignore_patterns (2/2)</li>
+<li>add security check task</li>
+<li>add skip_phrase for code tag skipping</li>
+<li>beartype - roar!</li>
+<li>optionally clear log directory. Move file_helpers from base</li>
+<li>new tail-like reverse read_lines</li>
+<li>rename DIG to DG because doit is one word</li>
+<li>retrieve doc_dir from copier</li>
+<li>add log-setup fun for doit</li>
+<li>make (source) doc_dir configurable</li>
+<li>add sanitizer</li>
+<li>add pytype</li>
+<li><strong>#36</strong>: start WIP ReadMeMachine</li>
+<li><strong>#36</strong>: merge logic of markdown auto-formatters</li>
+<li>make code tag partially configurable</li>
+<li>move check_types into calcipy</li>
+<li>import templates from pdocs</li>
+</ul>
+<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>resolve doc_dir and style errors</li>
+<li><strong>#58</strong>: remove None from pdocs output</li>
+<li>deconflict doit/nox</li>
+<li>repair failing test</li>
+<li>packaging needed keyword argument</li>
+<li>import and nox syntax errors</li>
+<li>run push pre-commit hooks with doit</li>
+<li>show log warning instead of error for stale dep</li>
+<li>improve output from check_stale</li>
+<li>errors caught in testing</li>
+<li>suppress beartype warnings for now</li>
+<li>drop logger middleware</li>
+<li>catch most calcipy section typos in toml</li>
+<li>remove check-secrets but keep snippets</li>
+<li>errors in ignore patterns</li>
+<li>import doit and expand nox test file</li>
+<li>skip tags must be at bottom</li>
+<li>reset Lint paths instead of extend</li>
+<li>use find_files for code tag summary</li>
+<li>don&rsquo;t manually add the package source dir</li>
+<li>lint typing and improve tests</li>
+<li>create separate file_search file to fix imports</li>
+<li><strong>#51</strong>: replace glob with git-based file identification</li>
+<li><strong>#53</strong>: Use Interact instead of LongRunning</li>
+<li>undo PEP585 for runtime beartype</li>
+<li>resolve file explosion from _find_files</li>
+<li>import the loguru Logger class safely</li>
+<li>additional problems found with mypy</li>
+<li>fix Doit Types and start beartype</li>
+<li>add no-verify to cl_bump</li>
+<li>correct isort configuration</li>
+<li>restore ReadMeMachine</li>
+<li>repair small bugs found in tests</li>
+<li>make transitions optional</li>
+</ul>
+<h3 id="refactor_1">Refactor<a class="headerlink" href="#refactor_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>move markdown to subdirectory for mkdocs</li>
+<li>move isort back to toml</li>
+<li>fix edge case in diff-cov failing and lint errors</li>
+<li>relicense with MIT for better compliance</li>
+<li>create generic doit-runner for noxfile</li>
+<li>fix some type issues</li>
+<li>minor fixes from AppVeyor testing</li>
+<li><strong>#38</strong>: reduce complexity</li>
+<li>minor cleanup to docs</li>
+<li>apply pre-commit autoformat</li>
+<li>auto-drop skipcq comment</li>
+<li>format with VSCode</li>
+<li>fix lint errors in YAML files</li>
+<li>move find file paths to DG.meta</li>
+<li>move if_found_unlink to file_helpers</li>
+<li>fix formatting with pre-commit</li>
+<li>fix attribute names for path types (1/2)</li>
+<li>use calcipy:skip-tags</li>
+<li>fix minor code tags</li>
+<li>move __temp_chdir and improve fix_dg</li>
+<li>narrow type ignore use</li>
+<li>use path_file of file_path</li>
+<li>apply auto-fixes from pre-commit</li>
+<li>replace all glob-search with find_files</li>
+<li>remove find_files from code_tag script</li>
+<li>update isort for trailing-comma</li>
+<li>move excluded lint rules to DG</li>
+<li>apply PEP585 and add pre-commit hook</li>
+<li>fix capitalization for doit (one word, all lowercase)</li>
+<li>improve activate_debug_logging</li>
+<li>try to replace Any with BaseAction</li>
+<li>apply 0.0.2 minor fixes</li>
+<li>apply 0.0.1 version of calcipy_template</li>
+<li>minor renaming for _MarkdownMachine</li>
+<li>fix lock file and line length</li>
+<li>run more pre-commit checks on commit</li>
+<li>standardize on code tags and cleanup</li>
+</ul>
+<h3 id="perf">Perf<a class="headerlink" href="#perf" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>combine autopep8 paths into single command</li>
+<li>combine files for linting in one command</li>
+</ul>
+<h2 id="2021020a0-2021-02-11">2021.0.2.0a0 (2021-02-11)<a class="headerlink" href="#2021020a0-2021-02-11" title="Permanent link">⚓︎</a></h2>
+<h3 id="feat_1">Feat<a class="headerlink" href="#feat_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>push tags with no pre-commit hooks on pre</li>
+<li>use Interactive instead of —yes for cl_bump*</li>
+<li>remove tag create/remove tasks</li>
+<li>new task cl_bump_pre</li>
+<li>replace MIT license with Unlicense</li>
+<li>use cz_legacy to generate changelogs</li>
+<li>remove task in anticipation of copier #26</li>
+<li>improve git pre-commit hooks</li>
+<li>new add-trailing-comma and pyupgrade hooks</li>
+<li>new mkdocs tasks and improvements</li>
+<li>new optional preconvert to serialize logs</li>
+<li>move logger configuration to log_helpers</li>
+<li>new cl_bump task. Closes #21</li>
+</ul>
+<h3 id="fix_1">Fix<a class="headerlink" href="#fix_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>do not pass filenames to pre-commit</li>
+<li><strong>#43</strong>: add year to version for pseudo-calver</li>
+<li>prevent legacy types for new commits</li>
+<li>prevent circular import in doit_tasks</li>
+<li>extras need to be defined as optional</li>
+<li>rollback hook changes as they are not working</li>
+<li>install hooks for push</li>
+<li>LongRunning passed tasks that should fail</li>
+<li>yesqa removed necessary noqa (H303, etc)</li>
+<li>incorrect output paths</li>
+<li>reduce false tags found (WIP). Fix #24</li>
+<li>regression in lint_project tasks</li>
+<li>unincremented version in toml</li>
+</ul>
+<h3 id="refactor_2">Refactor<a class="headerlink" href="#refactor_2" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li><strong>#22</strong>: restore MIT license</li>
+<li>copy+paste unmodified labels workflow</li>
+<li>update local TODO notes</li>
+<li>make toml an optional import</li>
+<li>rename path_source to path_project</li>
+<li>rename DIG_CWD as PATH_TEST_PROJECT</li>
+<li>rename test file</li>
+<li>doit is lowercase (CC looks like Dolt)</li>
+<li>replace sh with subprocess-tee</li>
+<li>reduce excess logging</li>
+<li>move DOIT_CONFIG to import</li>
+<li>move dig test to dig test file</li>
+</ul>
+<h2 id="010-2020-12-19">0.1.0 (2020-12-19)<a class="headerlink" href="#010-2020-12-19" title="Permanent link">⚓︎</a></h2>
+<h3 id="feat_2">Feat<a class="headerlink" href="#feat_2" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>new write_cl task utilizing comittizen</li>
+<li>new task, pre_commit_hooks</li>
+</ul>
+<h3 id="refactor_3">Refactor<a class="headerlink" href="#refactor_3" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>show STDOUT formatting in DoIt task</li>
+<li>remove archived code</li>
+</ul>
+<h3 id="new-old">New (Old)<a class="headerlink" href="#new-old" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>initialize new DIG for #7 (@WIP)</li>
+<li>last version with dash_dev package name (#22)</li>
+</ul>
+<h3 id="change-old">Change (Old)<a class="headerlink" href="#change-old" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>try skipcq above the line</li>
+<li>suppress LGTM warnings</li>
+<li>skip all DeepSource checks of wildcard import</li>
+<li>make dev-dep an “Extra” Fix #19</li>
+<li>test wildcard imports</li>
+<li>remove temp files used to test DeepSource</li>
+<li>rename doit_helpers folder to doit_tasks</li>
+<li>register tasks in <strong>init</strong> with <strong>all</strong></li>
+<li>WIP remove old DIG</li>
+<li>restore documentation tasks from archive</li>
+<li>remove pdoc3 documentation tasks</li>
+<li>final changes to intialize calcipy. Fixes #22</li>
+<li>move notes on typeguard to #28</li>
+<li>rename folder to calcipy #22</li>
+<li>rename source to calcipy for #22</li>
+<li>remove pdoc3 &amp; archive documentation tasks</li>
+</ul>
+<h3 id="fix-old">Fix (Old)<a class="headerlink" href="#fix-old" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>remaining DS wilcard issue</li>
+<li>try one more time to fix DeepSource * issues</li>
+<li>attempt to resolve deepsource issues</li>
+<li>circular import for tag_collector</li>
+<li>breaking changes from DIG changes (#7)</li>
+<li>refactor the missing keyword argument logic</li>
+<li>bury attr exceptions for coverage table</li>
+</ul>
+<h2 id="003-2020-12-10">0.0.3 (2020-12-10)<a class="headerlink" href="#003-2020-12-10" title="Permanent link">⚓︎</a></h2>
+<h3 id="new-old_1">New (Old)<a class="headerlink" href="#new-old_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>use the climate strike license (#22)</li>
+<li>ADR template and notes</li>
+</ul>
+<h3 id="change-old_1">Change (Old)<a class="headerlink" href="#change-old_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>remove sh for Windows support @WIP</li>
+<li>try long running for pytest</li>
+</ul>
+<h3 id="fix-old_1">Fix (Old)<a class="headerlink" href="#fix-old_1" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>make creating the log directory optional</li>
+</ul>
+<h2 id="002-2020-11-14">0.0.2 (2020-11-14)<a class="headerlink" href="#002-2020-11-14" title="Permanent link">⚓︎</a></h2>
+<h3 id="new-old_2">New (Old)<a class="headerlink" href="#new-old_2" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>separate task_git_add_docs</li>
+<li>archive watchcode task</li>
+<li>move DIG to separate file</li>
+<li>move tasks to use a wildcard import</li>
+</ul>
+<h3 id="change-old_2">Change (Old)<a class="headerlink" href="#change-old_2" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>add skipcq &amp; update version</li>
+<li>update documentation</li>
+<li>improve how tags are located</li>
+<li>update documentation @WIP</li>
+<li>minor type annotation fixes</li>
+</ul>
+<h2 id="001-2020-11-14">0.0.1 (2020-11-14)<a class="headerlink" href="#001-2020-11-14" title="Permanent link">⚓︎</a></h2>
+<h3 id="new-old_3">New (Old)<a class="headerlink" href="#new-old_3" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>add logging. Fixes #5</li>
+<li>intialized tag-finding logic @WIP</li>
+<li>use a new DoItTask type for annotations</li>
+<li>add type annotations</li>
+<li>Loguru configuration for init @WIP</li>
+<li>activate DeepSource</li>
+<li>allow user-content in <strong>init</strong>. Fixes #1</li>
+<li>indicate private functions. Fixes #4</li>
+<li>add loguru!</li>
+<li>add watchcode task for arbitrary files</li>
+<li>flake8-ann &amp; drop pur</li>
+<li>show README contents in <strong>init</strong></li>
+<li>dump isort &amp; flake8 settings in source path</li>
+<li>improve linting &amp; test tasks</li>
+<li>vastly expanded test coverage</li>
+<li>add ptw as a DoIt LongRunning task</li>
+<li>initialize index.html as redirect</li>
+<li>implement source code from dash_charts</li>
+<li>initialize poetry project</li>
+</ul>
+<h3 id="change-old_3">Change (Old)<a class="headerlink" href="#change-old_3" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>improve logging. Addresses #5</li>
+<li>improve logger context manager</li>
+<li>add task to summarize tags. Fixes #2</li>
+<li>move watchcode to separate file</li>
+<li>mark additional globals as private</li>
+<li>sync local changes for branch and TODOs</li>
+<li>loosen dependencies requirements</li>
+<li>add WIP type checker configs</li>
+<li>drop dash dependency</li>
+<li>remove unused packages</li>
+<li>drop interrogate</li>
+<li>try to improve interrogate table</li>
+<li>add interrogate to README</li>
+<li>implement linting tasks in package</li>
+<li>push local changes for linting</li>
+<li>add DIG.test_path</li>
+<li>incremental changes from local</li>
+<li>apply and cleanup local changes</li>
+<li>create the index.html with redirect</li>
+<li>add the HTML documentation to git control</li>
+<li>move gitchangelog to package</li>
+<li>sync local improvements to coverage &amp; linting</li>
+<li>update dependencies and documentation</li>
+<li>further improved commit_docs task</li>
+<li>call out issues with task_commit_docs @wip</li>
+<li>set Dash version &amp; update whitelist</li>
+</ul>
+<h3 id="fix-old_2">Fix (Old)<a class="headerlink" href="#fix-old_2" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>replace subprocess with sh</li>
+<li>problems found by DeepSource</li>
+<li>path to the .flake8 should be in source_path</li>
+<li>remove DIG.gh_pages_dir &amp; task_commit_docs</li>
+<li>changelog creation</li>
+<li>commit_docs task</li>
+<li>add missing pystache dep for gitchangelog</li>
+<li>document dash extras in README</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../.." class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              calcipy
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../CODE_OF_CONDUCT/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Contributor Covenant Code of Conduct
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tabs", "toc.autohide"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.34eae1b6.min.js"></script>
+      
+    
+  </body>
+</html>
