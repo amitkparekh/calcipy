@@ -1482,75 +1482,87 @@
 <span class="linenos" data-linenos="363 "></span>    <span class="n">doc</span><span class="p">:</span> <span class="n">DocConfig</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="linenos" data-linenos="364 "></span>    <span class="sd">&quot;&quot;&quot;Documentation Config.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="365 "></span>
-<span class="linenos" data-linenos="366 "></span>    <span class="nd">@log_fun</span>
-<span class="linenos" data-linenos="367 "></span>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span>
-<span class="linenos" data-linenos="368 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="linenos" data-linenos="369 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="370 "></span>        <span class="sd">&quot;&quot;&quot;Configure `DoitGlobals` based on project directory.</span>
-<span class="linenos" data-linenos="371 "></span>
-<span class="linenos" data-linenos="372 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="373 "></span><span class="sd">            path_project: optional project base directory Path. Defaults to the current working directory</span>
+<span class="linenos" data-linenos="366 "></span>    <span class="n">_is_set</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos" data-linenos="367 "></span>    <span class="sd">&quot;&quot;&quot;Internal flag to check if already set.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="368 "></span>
+<span class="linenos" data-linenos="369 "></span>    <span class="nd">@log_fun</span>
+<span class="linenos" data-linenos="370 "></span>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span>
+<span class="linenos" data-linenos="371 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="372 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="373 "></span>        <span class="sd">&quot;&quot;&quot;Configure `DoitGlobals` based on project directory.</span>
 <span class="linenos" data-linenos="374 "></span>
-<span class="linenos" data-linenos="375 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="376 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
-<span class="linenos" data-linenos="377 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
-<span class="linenos" data-linenos="378 "></span>
-<span class="linenos" data-linenos="379 "></span>        <span class="c1"># Read the optional toml configuration</span>
-<span class="linenos" data-linenos="380 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
-<span class="linenos" data-linenos="381 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
-<span class="linenos" data-linenos="382 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
-<span class="linenos" data-linenos="383 "></span>
-<span class="linenos" data-linenos="384 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="385 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="386 "></span>
-<span class="linenos" data-linenos="387 "></span>    <span class="k">def</span> <span class="nf">_set_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="388 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the meta submodules.</span>
-<span class="linenos" data-linenos="389 "></span>
-<span class="linenos" data-linenos="390 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="391 "></span><span class="sd">            path_project: project base directory Path</span>
-<span class="linenos" data-linenos="392 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="375 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="376 "></span><span class="sd">            path_project: optional project base directory Path. Defaults to the current working directory</span>
+<span class="linenos" data-linenos="377 "></span>
+<span class="linenos" data-linenos="378 "></span><span class="sd">        Raises:</span>
+<span class="linenos" data-linenos="379 "></span><span class="sd">            RuntimeError: if `set_paths` is called twice. This can cause unexpected behavior, so if</span>
+<span class="linenos" data-linenos="380 "></span><span class="sd">                absolutely necessary, set `DG._is_set = False`, then try `DG.set_paths()`</span>
+<span class="linenos" data-linenos="381 "></span>
+<span class="linenos" data-linenos="382 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="383 "></span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span><span class="p">:</span>
+<span class="linenos" data-linenos="384 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;DoitGlobals has already been configured and cannot be reconfigured&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="385 "></span>
+<span class="linenos" data-linenos="386 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="linenos" data-linenos="387 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="linenos" data-linenos="388 "></span>
+<span class="linenos" data-linenos="389 "></span>        <span class="c1"># Read the optional toml configuration</span>
+<span class="linenos" data-linenos="390 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
+<span class="linenos" data-linenos="391 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
+<span class="linenos" data-linenos="392 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
 <span class="linenos" data-linenos="393 "></span>
-<span class="linenos" data-linenos="394 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="395 "></span>        <span class="n">ignore_patterns</span> <span class="o">=</span> <span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">,</span> <span class="p">[])</span>
-<span class="linenos" data-linenos="396 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">PackageMeta</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">ignore_patterns</span><span class="o">=</span><span class="n">ignore_patterns</span><span class="p">)</span>
-<span class="linenos" data-linenos="397 "></span>
-<span class="linenos" data-linenos="398 "></span>    <span class="k">def</span> <span class="nf">_set_submodules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="399 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the rest of the submodules.</span>
-<span class="linenos" data-linenos="400 "></span>
-<span class="linenos" data-linenos="401 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="402 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
-<span class="linenos" data-linenos="403 "></span>
-<span class="linenos" data-linenos="404 "></span><span class="sd">        Raises:</span>
-<span class="linenos" data-linenos="405 "></span><span class="sd">            RuntimeError: if problems in formatting of the toml file</span>
-<span class="linenos" data-linenos="406 "></span>
-<span class="linenos" data-linenos="407 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="408 "></span>        <span class="c1"># Configure global options</span>
-<span class="linenos" data-linenos="409 "></span>        <span class="n">section_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lint&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;code_tag&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="410 "></span>        <span class="n">supported_keys</span> <span class="o">=</span> <span class="n">section_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="411 "></span>        <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">calcipy_config</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">supported_keys</span><span class="p">]</span>
-<span class="linenos" data-linenos="412 "></span>        <span class="k">if</span> <span class="n">unexpected_keys</span><span class="p">:</span>
-<span class="linenos" data-linenos="413 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found unexpected key(s) </span><span class="si">{</span><span class="n">unexpected_keys</span><span class="si">}</span><span class="s1"> (i.e. not in </span><span class="si">{</span><span class="n">supported_keys</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="414 "></span>
-<span class="linenos" data-linenos="415 "></span>        <span class="c1"># Parse the Copier file for configuration information</span>
-<span class="linenos" data-linenos="416 "></span>        <span class="n">doc_sub_dir</span> <span class="o">=</span> <span class="n">get_doc_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;docs&#39;</span>  <span class="c1"># Note: subdirectory is important</span>
-<span class="linenos" data-linenos="417 "></span>        <span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="394 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="395 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="396 "></span>
+<span class="linenos" data-linenos="397 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos="398 "></span>
+<span class="linenos" data-linenos="399 "></span>    <span class="k">def</span> <span class="nf">_set_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="400 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the meta submodules.</span>
+<span class="linenos" data-linenos="401 "></span>
+<span class="linenos" data-linenos="402 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="403 "></span><span class="sd">            path_project: project base directory Path</span>
+<span class="linenos" data-linenos="404 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="405 "></span>
+<span class="linenos" data-linenos="406 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="407 "></span>        <span class="n">ignore_patterns</span> <span class="o">=</span> <span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="linenos" data-linenos="408 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">PackageMeta</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">ignore_patterns</span><span class="o">=</span><span class="n">ignore_patterns</span><span class="p">)</span>
+<span class="linenos" data-linenos="409 "></span>
+<span class="linenos" data-linenos="410 "></span>    <span class="k">def</span> <span class="nf">_set_submodules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="411 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the rest of the submodules.</span>
+<span class="linenos" data-linenos="412 "></span>
+<span class="linenos" data-linenos="413 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="414 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="415 "></span>
+<span class="linenos" data-linenos="416 "></span><span class="sd">        Raises:</span>
+<span class="linenos" data-linenos="417 "></span><span class="sd">            RuntimeError: if problems in formatting of the toml file</span>
 <span class="linenos" data-linenos="418 "></span>
-<span class="linenos" data-linenos="419 "></span>        <span class="c1"># Configure submodules</span>
-<span class="linenos" data-linenos="420 "></span>        <span class="n">meta_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;path_project&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">}</span>
-<span class="linenos" data-linenos="421 "></span>        <span class="n">lint_k</span><span class="p">,</span> <span class="n">test_k</span><span class="p">,</span> <span class="n">code_k</span><span class="p">,</span> <span class="n">doc_k</span> <span class="o">=</span> <span class="p">[</span><span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{})</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">section_keys</span><span class="p">]</span>
-<span class="linenos" data-linenos="422 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">lint</span> <span class="o">=</span> <span class="n">LintConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">lint_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="423 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="n">TestingConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">test_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="424 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">ct</span> <span class="o">=</span> <span class="n">CodeTagConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">code_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="425 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">DocConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">doc_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="419 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="420 "></span>        <span class="c1"># Configure global options</span>
+<span class="linenos" data-linenos="421 "></span>        <span class="n">section_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lint&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;code_tag&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="422 "></span>        <span class="n">supported_keys</span> <span class="o">=</span> <span class="n">section_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="423 "></span>        <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">calcipy_config</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">supported_keys</span><span class="p">]</span>
+<span class="linenos" data-linenos="424 "></span>        <span class="k">if</span> <span class="n">unexpected_keys</span><span class="p">:</span>
+<span class="linenos" data-linenos="425 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found unexpected key(s) </span><span class="si">{</span><span class="n">unexpected_keys</span><span class="si">}</span><span class="s1"> (i.e. not in </span><span class="si">{</span><span class="n">supported_keys</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="linenos" data-linenos="426 "></span>
-<span class="linenos" data-linenos="427 "></span>
-<span class="linenos" data-linenos="428 "></span><span class="n">DG</span> <span class="o">=</span> <span class="n">DoitGlobals</span><span class="p">()</span>
-<span class="linenos" data-linenos="429 "></span><span class="sd">&quot;&quot;&quot;Global doit Globals class used to manage global variables.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="427 "></span>        <span class="c1"># Parse the Copier file for configuration information</span>
+<span class="linenos" data-linenos="428 "></span>        <span class="n">doc_sub_dir</span> <span class="o">=</span> <span class="n">get_doc_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;docs&#39;</span>  <span class="c1"># Note: subdirectory is important</span>
+<span class="linenos" data-linenos="429 "></span>        <span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="linenos" data-linenos="430 "></span>
-<span class="linenos" data-linenos="431 "></span><span class="n">_WORK_DIR</span> <span class="o">=</span> <span class="n">doit</span><span class="o">.</span><span class="n">get_initial_workdir</span><span class="p">()</span>
-<span class="linenos" data-linenos="432 "></span><span class="sd">&quot;&quot;&quot;Work directory identified by doit.&quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="433 "></span>
-<span class="linenos" data-linenos="434 "></span><span class="n">DG</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">_WORK_DIR</span><span class="p">)</span> <span class="k">if</span> <span class="n">_WORK_DIR</span> <span class="k">else</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
+<span class="linenos" data-linenos="431 "></span>        <span class="c1"># Configure submodules</span>
+<span class="linenos" data-linenos="432 "></span>        <span class="n">meta_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;path_project&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">}</span>
+<span class="linenos" data-linenos="433 "></span>        <span class="n">lint_k</span><span class="p">,</span> <span class="n">test_k</span><span class="p">,</span> <span class="n">code_k</span><span class="p">,</span> <span class="n">doc_k</span> <span class="o">=</span> <span class="p">[</span><span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{})</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">section_keys</span><span class="p">]</span>
+<span class="linenos" data-linenos="434 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">lint</span> <span class="o">=</span> <span class="n">LintConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">lint_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="435 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="n">TestingConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">test_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="436 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">ct</span> <span class="o">=</span> <span class="n">CodeTagConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">code_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="437 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">DocConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">doc_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="438 "></span>
+<span class="linenos" data-linenos="439 "></span>
+<span class="linenos" data-linenos="440 "></span><span class="n">DG</span> <span class="o">=</span> <span class="n">DoitGlobals</span><span class="p">()</span>
+<span class="linenos" data-linenos="441 "></span><span class="sd">&quot;&quot;&quot;Global doit Globals class used to manage global variables.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="442 "></span>
+<span class="linenos" data-linenos="443 "></span><span class="n">_WORK_DIR</span> <span class="o">=</span> <span class="n">doit</span><span class="o">.</span><span class="n">get_initial_workdir</span><span class="p">()</span>
+<span class="linenos" data-linenos="444 "></span><span class="sd">&quot;&quot;&quot;Work directory identified by doit.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="445 "></span>
+<span class="linenos" data-linenos="446 "></span><span class="n">DG</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">_WORK_DIR</span><span class="p">)</span> <span class="k">if</span> <span class="n">_WORK_DIR</span> <span class="k">else</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
 </code></pre></div>
 </details>
 <h2 id="variables">Variables<a class="headerlink" href="#variables" title="Permanent link">⚓︎</a></h2>
@@ -1685,8 +1697,9 @@
 </ul>
 <h3 id="doitglobals">DoitGlobals<a class="headerlink" href="#doitglobals" title="Permanent link">⚓︎</a></h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">class</span> <span class="nc">DoitGlobals</span><span class="p">(</span>
-<span class="linenos" data-linenos="2 "></span>
-<span class="linenos" data-linenos="3 "></span><span class="p">)</span>
+<span class="linenos" data-linenos="2 "></span>    <span class="o">*</span><span class="p">,</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="n">is_set</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos" data-linenos="4 "></span><span class="p">)</span>
 </code></pre></div>
 <details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="k">class</span> <span class="nc">DoitGlobals</span><span class="p">:</span>  <span class="c1"># noqa: H601</span>
 <span class="linenos" data-linenos=" 2 "></span>    <span class="sd">&quot;&quot;&quot;Global Variables for doit.&quot;&quot;&quot;</span>
@@ -1709,66 +1722,78 @@
 <span class="linenos" data-linenos="19 "></span>    <span class="n">doc</span><span class="p">:</span> <span class="n">DocConfig</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="linenos" data-linenos="20 "></span>    <span class="sd">&quot;&quot;&quot;Documentation Config.&quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="21 "></span>
-<span class="linenos" data-linenos="22 "></span>    <span class="nd">@log_fun</span>
-<span class="linenos" data-linenos="23 "></span>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span>
-<span class="linenos" data-linenos="24 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="linenos" data-linenos="25 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="26 "></span>        <span class="sd">&quot;&quot;&quot;Configure `DoitGlobals` based on project directory.</span>
-<span class="linenos" data-linenos="27 "></span>
-<span class="linenos" data-linenos="28 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="29 "></span><span class="sd">            path_project: optional project base directory Path. Defaults to the current working directory</span>
+<span class="linenos" data-linenos="22 "></span>    <span class="n">_is_set</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="sd">&quot;&quot;&quot;Internal flag to check if already set.&quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="24 "></span>
+<span class="linenos" data-linenos="25 "></span>    <span class="nd">@log_fun</span>
+<span class="linenos" data-linenos="26 "></span>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span>
+<span class="linenos" data-linenos="27 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="28 "></span>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="29 "></span>        <span class="sd">&quot;&quot;&quot;Configure `DoitGlobals` based on project directory.</span>
 <span class="linenos" data-linenos="30 "></span>
-<span class="linenos" data-linenos="31 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="32 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
-<span class="linenos" data-linenos="33 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
-<span class="linenos" data-linenos="34 "></span>
-<span class="linenos" data-linenos="35 "></span>        <span class="c1"># Read the optional toml configuration</span>
-<span class="linenos" data-linenos="36 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
-<span class="linenos" data-linenos="37 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
-<span class="linenos" data-linenos="38 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
-<span class="linenos" data-linenos="39 "></span>
-<span class="linenos" data-linenos="40 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="41 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="42 "></span>
-<span class="linenos" data-linenos="43 "></span>    <span class="k">def</span> <span class="nf">_set_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="44 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the meta submodules.</span>
-<span class="linenos" data-linenos="45 "></span>
-<span class="linenos" data-linenos="46 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="47 "></span><span class="sd">            path_project: project base directory Path</span>
-<span class="linenos" data-linenos="48 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="31 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="32 "></span><span class="sd">            path_project: optional project base directory Path. Defaults to the current working directory</span>
+<span class="linenos" data-linenos="33 "></span>
+<span class="linenos" data-linenos="34 "></span><span class="sd">        Raises:</span>
+<span class="linenos" data-linenos="35 "></span><span class="sd">            RuntimeError: if `set_paths` is called twice. This can cause unexpected behavior, so if</span>
+<span class="linenos" data-linenos="36 "></span><span class="sd">                absolutely necessary, set `DG._is_set = False`, then try `DG.set_paths()`</span>
+<span class="linenos" data-linenos="37 "></span>
+<span class="linenos" data-linenos="38 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="39 "></span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span><span class="p">:</span>
+<span class="linenos" data-linenos="40 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;DoitGlobals has already been configured and cannot be reconfigured&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="41 "></span>
+<span class="linenos" data-linenos="42 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="linenos" data-linenos="43 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="linenos" data-linenos="44 "></span>
+<span class="linenos" data-linenos="45 "></span>        <span class="c1"># Read the optional toml configuration</span>
+<span class="linenos" data-linenos="46 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
+<span class="linenos" data-linenos="47 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
+<span class="linenos" data-linenos="48 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
 <span class="linenos" data-linenos="49 "></span>
-<span class="linenos" data-linenos="50 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="51 "></span>        <span class="n">ignore_patterns</span> <span class="o">=</span> <span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">,</span> <span class="p">[])</span>
-<span class="linenos" data-linenos="52 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">PackageMeta</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">ignore_patterns</span><span class="o">=</span><span class="n">ignore_patterns</span><span class="p">)</span>
-<span class="linenos" data-linenos="53 "></span>
-<span class="linenos" data-linenos="54 "></span>    <span class="k">def</span> <span class="nf">_set_submodules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="55 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the rest of the submodules.</span>
-<span class="linenos" data-linenos="56 "></span>
-<span class="linenos" data-linenos="57 "></span><span class="sd">        Args:</span>
-<span class="linenos" data-linenos="58 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
-<span class="linenos" data-linenos="59 "></span>
-<span class="linenos" data-linenos="60 "></span><span class="sd">        Raises:</span>
-<span class="linenos" data-linenos="61 "></span><span class="sd">            RuntimeError: if problems in formatting of the toml file</span>
-<span class="linenos" data-linenos="62 "></span>
-<span class="linenos" data-linenos="63 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="64 "></span>        <span class="c1"># Configure global options</span>
-<span class="linenos" data-linenos="65 "></span>        <span class="n">section_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lint&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;code_tag&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="66 "></span>        <span class="n">supported_keys</span> <span class="o">=</span> <span class="n">section_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">]</span>
-<span class="linenos" data-linenos="67 "></span>        <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">calcipy_config</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">supported_keys</span><span class="p">]</span>
-<span class="linenos" data-linenos="68 "></span>        <span class="k">if</span> <span class="n">unexpected_keys</span><span class="p">:</span>
-<span class="linenos" data-linenos="69 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found unexpected key(s) </span><span class="si">{</span><span class="n">unexpected_keys</span><span class="si">}</span><span class="s1"> (i.e. not in </span><span class="si">{</span><span class="n">supported_keys</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="70 "></span>
-<span class="linenos" data-linenos="71 "></span>        <span class="c1"># Parse the Copier file for configuration information</span>
-<span class="linenos" data-linenos="72 "></span>        <span class="n">doc_sub_dir</span> <span class="o">=</span> <span class="n">get_doc_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;docs&#39;</span>  <span class="c1"># Note: subdirectory is important</span>
-<span class="linenos" data-linenos="73 "></span>        <span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="50 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="51 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="52 "></span>
+<span class="linenos" data-linenos="53 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos="54 "></span>
+<span class="linenos" data-linenos="55 "></span>    <span class="k">def</span> <span class="nf">_set_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="56 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the meta submodules.</span>
+<span class="linenos" data-linenos="57 "></span>
+<span class="linenos" data-linenos="58 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="59 "></span><span class="sd">            path_project: project base directory Path</span>
+<span class="linenos" data-linenos="60 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="61 "></span>
+<span class="linenos" data-linenos="62 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="63 "></span>        <span class="n">ignore_patterns</span> <span class="o">=</span> <span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">,</span> <span class="p">[])</span>
+<span class="linenos" data-linenos="64 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">meta</span> <span class="o">=</span> <span class="n">PackageMeta</span><span class="p">(</span><span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">ignore_patterns</span><span class="o">=</span><span class="n">ignore_patterns</span><span class="p">)</span>
+<span class="linenos" data-linenos="65 "></span>
+<span class="linenos" data-linenos="66 "></span>    <span class="k">def</span> <span class="nf">_set_submodules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="67 "></span>        <span class="sd">&quot;&quot;&quot;Initialize the rest of the submodules.</span>
+<span class="linenos" data-linenos="68 "></span>
+<span class="linenos" data-linenos="69 "></span><span class="sd">        Args:</span>
+<span class="linenos" data-linenos="70 "></span><span class="sd">            calcipy_config: custom calcipy configuration from toml file</span>
+<span class="linenos" data-linenos="71 "></span>
+<span class="linenos" data-linenos="72 "></span><span class="sd">        Raises:</span>
+<span class="linenos" data-linenos="73 "></span><span class="sd">            RuntimeError: if problems in formatting of the toml file</span>
 <span class="linenos" data-linenos="74 "></span>
-<span class="linenos" data-linenos="75 "></span>        <span class="c1"># Configure submodules</span>
-<span class="linenos" data-linenos="76 "></span>        <span class="n">meta_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;path_project&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">}</span>
-<span class="linenos" data-linenos="77 "></span>        <span class="n">lint_k</span><span class="p">,</span> <span class="n">test_k</span><span class="p">,</span> <span class="n">code_k</span><span class="p">,</span> <span class="n">doc_k</span> <span class="o">=</span> <span class="p">[</span><span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{})</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">section_keys</span><span class="p">]</span>
-<span class="linenos" data-linenos="78 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">lint</span> <span class="o">=</span> <span class="n">LintConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">lint_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="79 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="n">TestingConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">test_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="80 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">ct</span> <span class="o">=</span> <span class="n">CodeTagConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">code_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="linenos" data-linenos="81 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">DocConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">doc_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="75 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="76 "></span>        <span class="c1"># Configure global options</span>
+<span class="linenos" data-linenos="77 "></span>        <span class="n">section_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;lint&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="s1">&#39;code_tag&#39;</span><span class="p">,</span> <span class="s1">&#39;doc&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="78 "></span>        <span class="n">supported_keys</span> <span class="o">=</span> <span class="n">section_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;ignore_patterns&#39;</span><span class="p">]</span>
+<span class="linenos" data-linenos="79 "></span>        <span class="n">unexpected_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">calcipy_config</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">supported_keys</span><span class="p">]</span>
+<span class="linenos" data-linenos="80 "></span>        <span class="k">if</span> <span class="n">unexpected_keys</span><span class="p">:</span>
+<span class="linenos" data-linenos="81 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Found unexpected key(s) </span><span class="si">{</span><span class="n">unexpected_keys</span><span class="si">}</span><span class="s1"> (i.e. not in </span><span class="si">{</span><span class="n">supported_keys</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="82 "></span>
+<span class="linenos" data-linenos="83 "></span>        <span class="c1"># Parse the Copier file for configuration information</span>
+<span class="linenos" data-linenos="84 "></span>        <span class="n">doc_sub_dir</span> <span class="o">=</span> <span class="n">get_doc_dir</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">)</span> <span class="o">/</span> <span class="s1">&#39;docs&#39;</span>  <span class="c1"># Note: subdirectory is important</span>
+<span class="linenos" data-linenos="85 "></span>        <span class="n">doc_sub_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="86 "></span>
+<span class="linenos" data-linenos="87 "></span>        <span class="c1"># Configure submodules</span>
+<span class="linenos" data-linenos="88 "></span>        <span class="n">meta_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;path_project&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">path_project</span><span class="p">}</span>
+<span class="linenos" data-linenos="89 "></span>        <span class="n">lint_k</span><span class="p">,</span> <span class="n">test_k</span><span class="p">,</span> <span class="n">code_k</span><span class="p">,</span> <span class="n">doc_k</span> <span class="o">=</span> <span class="p">[</span><span class="n">calcipy_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">{})</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">section_keys</span><span class="p">]</span>
+<span class="linenos" data-linenos="90 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">lint</span> <span class="o">=</span> <span class="n">LintConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">lint_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="91 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">test</span> <span class="o">=</span> <span class="n">TestingConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">test_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="92 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">ct</span> <span class="o">=</span> <span class="n">CodeTagConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">code_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
+<span class="linenos" data-linenos="93 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">DocConfig</span><span class="p">(</span><span class="o">**</span><span class="n">meta_kwargs</span><span class="p">,</span> <span class="n">doc_sub_dir</span><span class="o">=</span><span class="n">doc_sub_dir</span><span class="p">,</span> <span class="o">**</span><span class="n">doc_k</span><span class="p">)</span>  <span class="c1"># type: ignore[arg-type]</span>
 </code></pre></div>
 </details>
 <h4 id="methods_1">Methods<a class="headerlink" href="#methods_1" title="Permanent link">⚓︎</a></h4>
@@ -1795,6 +1820,25 @@
 </tr>
 </tbody>
 </table>
+<p><strong>Raises:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RuntimeError</td>
+<td>if <code>set_paths</code> is called twice. This can cause unexpected behavior, so if</td>
+</tr>
+<tr>
+<td>absolutely necessary, set <code>DG._is_set = False</code>, then try <code>DG.set_paths()</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>    <span class="nd">@log_fun</span>
 <span class="linenos" data-linenos=" 2 "></span>    <span class="k">def</span> <span class="nf">set_paths</span><span class="p">(</span>
 <span class="linenos" data-linenos=" 3 "></span>        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1804,17 +1848,26 @@
 <span class="linenos" data-linenos=" 7 "></span><span class="sd">        Args:</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="sd">            path_project: optional project base directory Path. Defaults to the current working directory</span>
 <span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="sd">        &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="linenos" data-linenos="10 "></span><span class="sd">        Raises:</span>
+<span class="linenos" data-linenos="11 "></span><span class="sd">            RuntimeError: if `set_paths` is called twice. This can cause unexpected behavior, so if</span>
+<span class="linenos" data-linenos="12 "></span><span class="sd">                absolutely necessary, set `DG._is_set = False`, then try `DG.set_paths()`</span>
 <span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span>        <span class="c1"># Read the optional toml configuration</span>
-<span class="linenos" data-linenos="15 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
-<span class="linenos" data-linenos="18 "></span>
-<span class="linenos" data-linenos="19 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="20 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span><span class="sd">        &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span><span class="p">:</span>
+<span class="linenos" data-linenos="16 "></span>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;DoitGlobals has already been configured and cannot be reconfigured&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="17 "></span>
+<span class="linenos" data-linenos="18 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Setting DG path: </span><span class="si">{</span><span class="n">path_project</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span> <span class="n">cwd</span><span class="o">=</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">())</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">path_project</span> <span class="ow">or</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="linenos" data-linenos="20 "></span>
+<span class="linenos" data-linenos="21 "></span>        <span class="c1"># Read the optional toml configuration</span>
+<span class="linenos" data-linenos="22 "></span>        <span class="c1"># &gt; Note: could allow LintConfig/.../DocConfig kwargs to be set in toml, but may be difficult to maintain</span>
+<span class="linenos" data-linenos="23 "></span>        <span class="n">path_toml</span> <span class="o">=</span> <span class="n">path_project</span> <span class="o">/</span> <span class="s1">&#39;pyproject.toml&#39;</span>
+<span class="linenos" data-linenos="24 "></span>        <span class="n">calcipy_config</span> <span class="o">=</span> <span class="n">toml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path_toml</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;tool&#39;</span><span class="p">,</span> <span class="p">{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;calcipy&#39;</span><span class="p">,</span> <span class="p">{})</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_meta</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="27 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_set_submodules</span><span class="p">(</span><span class="n">calcipy_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="28 "></span>
+<span class="linenos" data-linenos="29 "></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_is_set</span> <span class="o">=</span> <span class="kc">True</span>
 </code></pre></div>
 </details>
 <h3 id="lintconfig">LintConfig<a class="headerlink" href="#lintconfig" title="Permanent link">⚓︎</a></h3>

@@ -865,7 +865,7 @@
 <p>import re
 import shlex
 from pathlib import Path
-from typing import Callable
+from typing import Callable, List
 from urllib.parse import urlparse
 from urllib.request import url2pathname</p>
 <p>from loguru import logger</p>
@@ -1009,133 +1009,151 @@ except ImportError:  # pragma: no cover
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
-        <span class="n">cmd_str</span><span class="p">:</span> <span class="n">string</span> <span class="n">command</span> <span class="n">to</span> <span class="n">run</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span></pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
+<span class="w">        </span><span class="nl">cmd_str</span><span class="p">:</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">run</span><span class="w"></span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    cmd_str = re.sub(r&#39;^poetry run &#39;, &#39;&#39;, cmd_str)</span>
-<span class="sd">    session.run(*shlex.split(cmd_str), stdout=True)</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    cmd_str = re.sub(r&#39;^poetry run &#39;, &#39;&#39;, cmd_str)</span>
+<span class="ss">    session.run(*shlex.split(cmd_str), stdout=True)</span>
 
-<span class="sd">def _run_func_cmd(action: DoitAction) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Run</span> <span class="n">a</span> <span class="n">python</span> <span class="n">action</span><span class="o">.</span>
+<span class="ss">def _install_extras(session: Session, extras: List[str]) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Install</span><span class="w"> </span><span class="n">extras</span><span class="p">.</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">action</span><span class="p">:</span> <span class="n">doit</span> <span class="n">python</span> <span class="n">action</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
+<span class="w">        </span><span class="nl">extras</span><span class="p">:</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">extras</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">install</span><span class="w"></span>
 
-    <span class="n">Raises</span><span class="p">:</span>
-        <span class="n">RuntimeError</span><span class="p">:</span> <span class="k">if</span> <span class="n">a</span> <span class="n">function</span> <span class="n">action</span> <span class="n">fails</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    if DG.meta.pkg_name == &#39;calcipy&#39;:</span>
+<span class="ss">        session.poetry.installroot(extras=extras)</span>
+<span class="ss">    else:  # pragma: no cover</span>
+<span class="ss">        session.install(&#39;.&#39;, f&#39;calcipy[{&quot;</span><span class="p">,</span><span class="ss">&quot;.join(extras)}]&#39;)</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    # https://pydoit.org/tasks.html#python-action</span>
-<span class="sd">    func, args, kwargs = [*list(action), {}][:3]</span>
-<span class="sd">    result = func(args, **kwargs)</span>
-<span class="sd">    if result not in [True, None] or not isinstance(result, (str, dict)):</span>
-<span class="sd">        raise RuntimeError(f&#39;Returned {result}. Failed to run task: {action}&#39;)</span>
+<span class="ss">def _run_func_cmd(action: DoitAction) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="k">action</span><span class="p">.</span><span class="w"></span>
 
-<span class="sd">def _run_doit_task(session: Session, task_fun: Callable[[], DoitTask]) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Run</span> <span class="n">a</span> <span class="n">DoitTask</span> <span class="n">actions</span> <span class="n">without</span> <span class="n">using</span> <span class="n">doit</span><span class="o">.</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">action</span><span class="err">:</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="k">action</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
-        <span class="n">task_fun</span><span class="p">:</span> <span class="n">function</span> <span class="n">that</span> <span class="n">returns</span> <span class="n">a</span> <span class="n">DoitTask</span>
+<span class="w">    </span><span class="nl">Raises</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nl">RuntimeError</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="k">action</span><span class="w"> </span><span class="n">fails</span><span class="w"></span>
 
-    <span class="n">Raises</span><span class="p">:</span>
-        <span class="n">NotImplementedError</span><span class="p">:</span> <span class="k">if</span> <span class="n">the</span> <span class="n">action</span> <span class="k">is</span> <span class="n">of</span> <span class="n">an</span> <span class="n">unknown</span> <span class="n">type</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    # https://pydoit.org/tasks.html#python-action</span>
+<span class="ss">    func, args, kwargs = [*list(action), {}][:3]</span>
+<span class="ss">    result = func(args, **kwargs)</span>
+<span class="ss">    if result not in [True, None] or not isinstance(result, (str, dict)):</span>
+<span class="ss">        raise RuntimeError(f&#39;Returned {result}. Failed to run task: {action}&#39;)</span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    task = task_fun()</span>
-<span class="sd">    for action in task[&#39;actions&#39;]:</span>
-<span class="sd">        if isinstance(action, str):</span>
-<span class="sd">            _run_str_cmd(session, action)</span>
-<span class="sd">        elif getattr(action, &#39;action&#39;, None):</span>
-<span class="sd">            _run_str_cmd(session, action.action)</span>
-<span class="sd">        elif isinstance(action, (list, tuple)):</span>
-<span class="sd">            _run_func_cmd(action)</span>
-<span class="sd">        else:</span>
-<span class="sd">            raise NotImplementedError(f&#39;Unable to run {action} ({type(action)})&#39;)</span>
+<span class="ss">def _run_doit_task(session: Session, task_fun: Callable[[], DoitTask]) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DoitTask</span><span class="w"> </span><span class="n">actions</span><span class="w"> </span><span class="k">without</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">doit</span><span class="p">.</span><span class="w"></span>
 
-<span class="sd">@nox_session(python=DG.test.pythons, reuse_venv=True)</span>
-<span class="sd">def tests(session: Session) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Run</span> <span class="n">doit</span> <span class="n">test</span> <span class="n">task</span> <span class="k">for</span> <span class="n">specified</span> <span class="n">python</span> <span class="n">versions</span><span class="o">.</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
+<span class="w">        </span><span class="nl">task_fun</span><span class="p">:</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="k">returns</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">DoitTask</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
+<span class="w">    </span><span class="nl">Raises</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nl">NotImplementedError</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">action</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">unknown</span><span class="w"> </span><span class="n">type</span><span class="w"></span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    # PLANNED: See https://github.com/cjolowicz/nox-poetry/issues/230#issuecomment-855430306</span>
-<span class="sd">    # session.poetry.installroot(extras=(&#39;dev&#39;, &#39;test&#39;))</span>
-<span class="sd">    session.run(&#39;poetry&#39;, &#39;install&#39;, &#39;--dev&#39;, external=True)</span>
-<span class="sd">    _run_doit_task(session, task_test)</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    task = task_fun()</span>
+<span class="ss">    for action in task[&#39;actions&#39;]:</span>
+<span class="ss">        if isinstance(action, str):</span>
+<span class="ss">            _run_str_cmd(session, action)</span>
+<span class="ss">        elif getattr(action, &#39;action&#39;, None):</span>
+<span class="ss">            _run_str_cmd(session, action.action)</span>
+<span class="ss">        elif isinstance(action, (list, tuple)):</span>
+<span class="ss">            _run_func_cmd(action)</span>
+<span class="ss">        else:</span>
+<span class="ss">            raise NotImplementedError(f&#39;Unable to run {action} ({type(action)})&#39;)</span>
 
-<span class="sd">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
-<span class="sd">def coverage(session: Session) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Run</span> <span class="n">doit</span> <span class="n">test</span> <span class="n">task</span> <span class="k">for</span> <span class="n">specified</span> <span class="n">python</span> <span class="n">versions</span><span class="o">.</span>
+<span class="ss">@nox_session(python=DG.test.pythons, reuse_venv=True)</span>
+<span class="ss">def tests(session: Session) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">versions</span><span class="p">.</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    # PLANNED: See https://github.com/cjolowicz/nox-poetry/issues/230#issuecomment-855430306</span>
-<span class="sd">    # session.poetry.installroot(extras=(&#39;dev&#39;, &#39;test&#39;))</span>
-<span class="sd">    session.run(&#39;poetry&#39;, &#39;install&#39;, &#39;--dev&#39;, external=True)</span>
-<span class="sd">    _run_doit_task(session, task_coverage)</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    _install_extras(session, [&#39;dev&#39;, &#39;test&#39;])</span>
+<span class="ss">    _run_doit_task(session, task_test)</span>
 
-<span class="sd">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=False)</span>
-<span class="sd">def build_dist(session: Session) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Build</span> <span class="n">the</span> <span class="n">project</span> <span class="n">files</span> <span class="n">within</span> <span class="n">a</span> <span class="n">controlled</span> <span class="n">environment</span> <span class="k">for</span> <span class="n">repeatability</span><span class="o">.</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">def coverage(session: Session) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">versions</span><span class="p">.</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    if_found_unlink(DG.meta.path_project / &#39;dist&#39;)</span>
-<span class="sd">    path_wheel = session.poetry.build_package()</span>
-<span class="sd">    logger.info(f&#39;Created wheel: {path_wheel}&#39;)</span>
-<span class="sd">    # Install the wheel and check that imports without any of the optional dependencies</span>
-<span class="sd">    session.install(path_wheel)</span>
-<span class="sd">    session.run(*shlex.split(&#39;python scripts/check_imports.py&#39;), stdout=True)</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    _install_extras(session, [&#39;dev&#39;, &#39;test&#39;])</span>
+<span class="ss">    _run_doit_task(session, task_coverage)</span>
 
-<span class="sd">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
-<span class="sd">def build_check(session: Session) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Check</span> <span class="n">that</span> <span class="n">the</span> <span class="n">built</span> <span class="n">output</span> <span class="n">meets</span> <span class="n">all</span> <span class="n">checks</span><span class="o">.</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=False)</span>
+<span class="ss">def build_dist(session: Session) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="n">Build</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">controlled</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">repeatability</span><span class="p">.</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
 
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    # Build sdist and fix return URI, which will have file://...#egg=calcipy</span>
-<span class="sd">    sdist_uri = session.poetry.build_package(distribution_format=DistributionFormat.SDIST)</span>
-<span class="sd">    path_sdist = Path(url2pathname(urlparse(sdist_uri).path))</span>
-<span class="sd">    logger.debug(f&#39;Fixed sdist URI ({sdist_uri}): {path_sdist}&#39;)</span>
-<span class="sd">    # Check with pyroma</span>
-<span class="sd">    session.install(&#39;pyroma&#39;, &#39;--upgrade&#39;)</span>
-<span class="sd">    # PLANNED: Troubleshoot why pyroma score is so low (6/10)</span>
-<span class="sd">    session.run(&#39;pyroma&#39;, &#39;--file&#39;, path_sdist.as_posix(), &#39;--min=6&#39;, stdout=True)</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    if_found_unlink(DG.meta.path_project / &#39;dist&#39;)</span>
+<span class="ss">    path_wheel = session.poetry.build_package()</span>
+<span class="ss">    logger.info(f&#39;Created wheel: {path_wheel}&#39;)</span>
+<span class="ss">    # Install the wheel and check that imports without any of the optional dependencies</span>
+<span class="ss">    session.install(path_wheel)</span>
+<span class="ss">    session.run(*shlex.split(&#39;python scripts/check_imports.py&#39;), stdout=True)</span>
 
-<span class="sd">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
-<span class="sd">def check_safety(session: Session) -&gt; None:</span>
-<span class="sd">    &quot;&quot;&quot;</span><span class="n">Check</span> <span class="k">for</span> <span class="n">known</span> <span class="n">vulnerabilities</span> <span class="n">with</span> <span class="n">safety</span><span class="o">.</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">def build_check(session: Session) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="k">Check</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">built</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">meets</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">checks</span><span class="p">.</span><span class="w"></span>
 
-    <span class="n">Based</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyupio</span><span class="o">/</span><span class="n">safety</span><span class="o">/</span><span class="n">issues</span><span class="o">/</span><span class="mi">201</span><span class="c1">#issuecomment-632627366</span>
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
 
-    <span class="n">Args</span><span class="p">:</span>
-        <span class="n">session</span><span class="p">:</span> <span class="n">nox_poetry</span> <span class="n">Session</span>
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">    # Build sdist and fix return URI, which will have file://...#egg=calcipy</span>
+<span class="ss">    sdist_uri = session.poetry.build_package(distribution_format=DistributionFormat.SDIST)</span>
+<span class="ss">    path_sdist = Path(url2pathname(urlparse(sdist_uri).path))</span>
+<span class="ss">    logger.debug(f&#39;Fixed sdist URI ({sdist_uri}): {path_sdist}&#39;)</span>
+<span class="ss">    # Check with pyroma</span>
+<span class="ss">    session.install(&#39;pyroma&#39;, &#39;--upgrade&#39;)</span>
+<span class="ss">    # PLANNED: Troubleshoot why pyroma score is so low (6/10)</span>
+<span class="ss">    session.run(&#39;pyroma&#39;, &#39;--file&#39;, path_sdist.as_posix(), &#39;--min=6&#39;, stdout=True)</span>
 
-    <span class="n">Raises</span><span class="p">:</span>
-        <span class="n">RuntimeError</span><span class="p">:</span> <span class="k">if</span> <span class="n">safety</span> <span class="n">exited</span> <span class="n">with</span> <span class="n">errors</span><span class="p">,</span> <span class="n">but</span> <span class="ow">not</span> <span class="n">caught</span> <span class="n">by</span> <span class="n">session</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">def check_safety(session: Session) -&gt; None:</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="k">Check</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">vulnerabilities</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">safety</span><span class="p">.</span><span class="w"></span>
 
-    <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    # Note: safety requires a requirements.txt file and doesn&#39;t support pyproject.toml yet</span>
-<span class="s2">    session.poetry.export_requirements()</span>
-<span class="s2">    # Install and run</span>
-<span class="s2">    session.install(&#39;safety&#39;, &#39;--upgrade&#39;)</span>
-<span class="s2">    path_report = Path(&#39;insecure_report.json&#39;).resolve()</span>
-<span class="s2">    logger.info(f&#39;Creating safety report: {path_report}&#39;)</span>
-<span class="s2">    session.run(*shlex.split(f&#39;safety check --full-report --cache --output {path_report} --json&#39;), stdout=True)</span>
-<span class="s2">    if path_report.read_text().strip() != &#39;[]&#39;:</span>
-<span class="s2">        raise RuntimeError(f&#39;Found safety warnings in {path_report}&#39;)</span>
-<span class="s2">    path_report.unlink()</span>
+<span class="w">    </span><span class="n">Based</span><span class="w"> </span><span class="k">on</span><span class="err">:</span><span class="w"> </span><span class="nl">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">pyupio</span><span class="o">/</span><span class="n">safety</span><span class="o">/</span><span class="n">issues</span><span class="o">/</span><span class="mi">201</span><span class="n">#issuecomment</span><span class="o">-</span><span class="mi">632627366</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">Args</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">session</span><span class="err">:</span><span class="w"> </span><span class="n">nox_poetry</span><span class="w"> </span><span class="k">Session</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">Raises</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nl">RuntimeError</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">safety</span><span class="w"> </span><span class="n">exited</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">errors</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">caught</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="k">session</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;</span><span class="err">&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nl">Note</span><span class="p">:</span><span class="w"> </span><span class="n">safety</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">requirements</span><span class="p">.</span><span class="n">txt</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">doesn</span><span class="s1">&#39;t support pyproject.toml yet</span>
+<span class="s1">    session.poetry.export_requirements()</span>
+<span class="s1">    # Install and run</span>
+<span class="s1">    session.install(&#39;</span><span class="n">safety</span><span class="s1">&#39;, &#39;</span><span class="o">--</span><span class="n">upgrade</span><span class="s1">&#39;)</span>
+<span class="s1">    path_report = Path(&#39;</span><span class="n">insecure_report</span><span class="p">.</span><span class="n">json</span><span class="s1">&#39;).resolve()</span>
+<span class="s1">    logger.info(f&#39;</span><span class="n">Creating</span><span class="w"> </span><span class="n">safety</span><span class="w"> </span><span class="nl">report</span><span class="p">:</span><span class="w"> </span><span class="err">{</span><span class="n">path_report</span><span class="err">}</span><span class="s1">&#39;)</span>
+<span class="s1">    session.run(*shlex.split(f&#39;</span><span class="n">safety</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="o">--</span><span class="k">full</span><span class="o">-</span><span class="n">report</span><span class="w"> </span><span class="o">--</span><span class="n">cache</span><span class="w"> </span><span class="o">--</span><span class="k">output</span><span class="w"> </span><span class="err">{</span><span class="n">path_report</span><span class="err">}</span><span class="w"> </span><span class="o">--</span><span class="n">json</span><span class="s1">&#39;), stdout=True)</span>
+<span class="s1">    if path_report.read_text().strip() != &#39;</span><span class="err">[]</span><span class="s1">&#39;:</span>
+<span class="s1">        raise RuntimeError(f&#39;</span><span class="k">Found</span><span class="w"> </span><span class="n">safety</span><span class="w"> </span><span class="n">warnings</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="err">{</span><span class="n">path_report</span><span class="err">}&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="n">path_report</span><span class="p">.</span><span class="n">unlink</span><span class="p">()</span><span class="w"></span>
 </code></pre></div>
 </td></tr></table>
 <p>```</p>

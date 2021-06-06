@@ -855,13 +855,16 @@
 <span class="linenos" data-linenos="5 "></span><span class="c1"># If you didn&#39;t configure a token, you will need to provide your username and password to publish</span>
 </code></pre></div>
 <p>To publish to the real PyPi</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span>poetry config pypi-token.pypi ...
-<span class="linenos" data-linenos="2 "></span>poetry run doit run publish
-<span class="linenos" data-linenos="3 "></span>
-<span class="linenos" data-linenos="4 "></span><span class="c1"># For a full release, increment the version, the documentation, and publish</span>
-<span class="linenos" data-linenos="5 "></span>poetry run doit run --continue
-<span class="linenos" data-linenos="6 "></span>poetry run doit run cl_bump document deploy_docs publish
-<span class="linenos" data-linenos="7 "></span><span class="c1"># Note: cl_bump_pre is helpful for pre-releases rather than full increments</span>
+<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span>poetry config pypi-token.pypi ...
+<span class="linenos" data-linenos=" 2 "></span>poetry run doit run publish
+<span class="linenos" data-linenos=" 3 "></span>
+<span class="linenos" data-linenos=" 4 "></span><span class="c1"># For a full release, triple check the default tasks, increment the version, rebuild documentation, and publish!</span>
+<span class="linenos" data-linenos=" 5 "></span>poetry run doit run --continue
+<span class="linenos" data-linenos=" 6 "></span>poetry run doit run cl_bump document deploy_docs publish
+<span class="linenos" data-linenos=" 7 "></span>
+<span class="linenos" data-linenos=" 8 "></span><span class="c1"># For pre-releases use cl_bump_pre</span>
+<span class="linenos" data-linenos=" 9 "></span>poetry run doit run cl_bump_pre -p rc
+<span class="linenos" data-linenos="10 "></span>poetry run doit run publish
 </code></pre></div>
 <h2 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">⚓︎</a></h2>
 <!-- {cts} COVERAGE -->
@@ -901,7 +904,7 @@
 <td align="left"><code>calcipy/dev/noxfile.py</code></td>
 <td align="right">16</td>
 <td align="right">0</td>
-<td align="right">62</td>
+<td align="right">68</td>
 <td align="left">100.0%</td>
 </tr>
 <tr>
@@ -927,17 +930,17 @@
 </tr>
 <tr>
 <td align="left"><code>calcipy/doit_tasks/doc.py</code></td>
-<td align="right">123</td>
+<td align="right">126</td>
 <td align="right">5</td>
 <td align="right">5</td>
-<td align="left">95.9%</td>
+<td align="left">96.0%</td>
 </tr>
 <tr>
 <td align="left"><code>calcipy/doit_tasks/doit_globals.py</code></td>
-<td align="right">158</td>
-<td align="right">3</td>
+<td align="right">162</td>
+<td align="right">4</td>
 <td align="right">10</td>
-<td align="left">98.1%</td>
+<td align="left">97.5%</td>
 </tr>
 <tr>
 <td align="left"><code>calcipy/doit_tasks/file_search.py</code></td>
@@ -997,14 +1000,14 @@
 </tr>
 <tr>
 <td align="left"><strong>Totals</strong></td>
-<td align="right">903</td>
-<td align="right">55</td>
-<td align="right">152</td>
-<td align="left">93.9%</td>
+<td align="right">910</td>
+<td align="right">56</td>
+<td align="right">158</td>
+<td align="left">93.8%</td>
 </tr>
 </tbody>
 </table>
-<p>Generated on: 2021-06-06T10:32:41.923959</p>
+<p>Generated on: 2021-06-06T16:30:09.233946</p>
 <!-- {cte} -->
                 
               
