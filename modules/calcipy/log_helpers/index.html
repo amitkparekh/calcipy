@@ -908,7 +908,7 @@
 <span class="linenos" data-linenos=" 31 "></span><span class="sd">    Based on the `_serialize_record` method:</span>
 <span class="linenos" data-linenos=" 32 "></span><span class="sd">    https://github.com/Delgan/loguru/blob/44f6771/loguru/_handler.py#L222</span>
 <span class="linenos" data-linenos=" 33 "></span>
-<span class="linenos" data-linenos=" 34 "></span><span class="sd">    ```py</span>
+<span class="linenos" data-linenos=" 34 "></span><span class="sd">    ```python3</span>
 <span class="linenos" data-linenos=" 35 "></span><span class="sd">    from calcipy.log_helpers import serializable_compact</span>
 <span class="linenos" data-linenos=" 36 "></span>
 <span class="linenos" data-linenos=" 37 "></span><span class="sd">    logger.add(LOG_DIR / &#39;pkg-compact-{time}.jsonl&#39;, mode=&#39;w&#39;, level=logging.INFO,</span>
@@ -999,99 +999,101 @@
 <span class="linenos" data-linenos="122 "></span>
 <span class="linenos" data-linenos="123 "></span>
 <span class="linenos" data-linenos="124 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="125 "></span><span class="k">def</span> <span class="nf">build_logger_config</span><span class="p">(</span><span class="n">path_parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="linenos" data-linenos="126 "></span>    <span class="sd">&quot;&quot;&quot;Build the loguru configuration. Use with `loguru.configure(**configuration)`.</span>
+<span class="linenos" data-linenos="125 "></span><span class="k">def</span> <span class="nf">_format_jsonl_handler</span><span class="p">(</span><span class="n">log_dir</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="linenos" data-linenos="126 "></span>    <span class="sd">&quot;&quot;&quot;Return the JSONL Handler dictionary for loguru.</span>
 <span class="linenos" data-linenos="127 "></span>
-<span class="linenos" data-linenos="128 "></span><span class="sd">    ```py</span>
-<span class="linenos" data-linenos="129 "></span><span class="sd">    # Typical example enabling loguru for a package</span>
-<span class="linenos" data-linenos="130 "></span>
-<span class="linenos" data-linenos="131 "></span><span class="sd">    from pathlib import Path</span>
-<span class="linenos" data-linenos="132 "></span>
-<span class="linenos" data-linenos="133 "></span><span class="sd">    from loguru import logger</span>
+<span class="linenos" data-linenos="128 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="129 "></span><span class="sd">        log_dir: Path to the log directory</span>
+<span class="linenos" data-linenos="130 "></span><span class="sd">        production: if True, will tweak logging configuration for production code. Default is True</span>
+<span class="linenos" data-linenos="131 "></span>
+<span class="linenos" data-linenos="132 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="133 "></span><span class="sd">        Dict[str, Any]: the logger configuration as a dictionary</span>
 <span class="linenos" data-linenos="134 "></span>
-<span class="linenos" data-linenos="135 "></span><span class="sd">    from calcipy import __pkg_name__</span>
-<span class="linenos" data-linenos="136 "></span><span class="sd">    from calcipy.log_helpers import build_logger_config</span>
+<span class="linenos" data-linenos="135 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="136 "></span>    <span class="n">log_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
 <span class="linenos" data-linenos="137 "></span>
-<span class="linenos" data-linenos="138 "></span><span class="sd">    logger.enable(__pkg_name__)  # This will enable output from calcipy, which is off by default</span>
-<span class="linenos" data-linenos="139 "></span><span class="sd">    # See an example of toggling loguru at: https://github.com/KyleKing/calcipy/tree/examples/loguru-toggle</span>
-<span class="linenos" data-linenos="140 "></span>
-<span class="linenos" data-linenos="141 "></span><span class="sd">    path_parent = Path(__file__).resolve().parent</span>
-<span class="linenos" data-linenos="142 "></span><span class="sd">    log_config = build_logger_config(path_parent, production=False)</span>
-<span class="linenos" data-linenos="143 "></span><span class="sd">    logger.configure(**log_config)</span>
-<span class="linenos" data-linenos="144 "></span><span class="sd">    logger.info(&#39;Started logging to {path_parent}/.logs with {log_config}&#39;, path_parent=path_parent,</span>
-<span class="linenos" data-linenos="145 "></span><span class="sd">                log_config=log_config)</span>
-<span class="linenos" data-linenos="146 "></span><span class="sd">    ```</span>
-<span class="linenos" data-linenos="147 "></span>
-<span class="linenos" data-linenos="148 "></span><span class="sd">    Args:</span>
-<span class="linenos" data-linenos="149 "></span><span class="sd">        path_parent: Path to the directory where the &#39;.logs/&#39; folder should be created. Default is this package</span>
-<span class="linenos" data-linenos="150 "></span><span class="sd">        production: if True, will tweak logging configuration for production code. Default is True</span>
-<span class="linenos" data-linenos="151 "></span>
-<span class="linenos" data-linenos="152 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="153 "></span><span class="sd">        Dict[str, Any]: the logger configuration as a dictionary</span>
-<span class="linenos" data-linenos="154 "></span>
-<span class="linenos" data-linenos="155 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="156 "></span>    <span class="k">if</span> <span class="n">path_parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="157 "></span>        <span class="n">path_parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos" data-linenos="158 "></span>
-<span class="linenos" data-linenos="159 "></span>    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">path_parent</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span>
-<span class="linenos" data-linenos="160 "></span>    <span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="161 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Started logging to </span><span class="si">{</span><span class="n">log_dir</span><span class="si">}</span><span class="s1"> (production=</span><span class="si">{</span><span class="n">production</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="162 "></span>    <span class="n">log_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
-<span class="linenos" data-linenos="163 "></span>
-<span class="linenos" data-linenos="164 "></span>    <span class="n">jsonl_handler</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos" data-linenos="165 "></span>        <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.jsonl&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
-<span class="linenos" data-linenos="166 "></span>        <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="167 "></span>    <span class="p">}</span>
-<span class="linenos" data-linenos="168 "></span>    <span class="k">if</span> <span class="n">production</span><span class="p">:</span>
-<span class="linenos" data-linenos="169 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serializable_compact</span>
-<span class="linenos" data-linenos="170 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="171 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;serialize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos" data-linenos="172 "></span>
-<span class="linenos" data-linenos="173 "></span>    <span class="k">return</span> <span class="p">{</span>
-<span class="linenos" data-linenos="174 "></span>        <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="linenos" data-linenos="175 "></span>            <span class="p">{</span>
-<span class="linenos" data-linenos="176 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-<span class="linenos" data-linenos="177 "></span>                <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="178 "></span>            <span class="p">},</span>
-<span class="linenos" data-linenos="179 "></span>            <span class="n">jsonl_handler</span><span class="p">,</span>
-<span class="linenos" data-linenos="180 "></span>            <span class="p">{</span>
-<span class="linenos" data-linenos="181 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.log&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
-<span class="linenos" data-linenos="182 "></span>                <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="183 "></span>            <span class="p">},</span>
-<span class="linenos" data-linenos="184 "></span>        <span class="p">],</span>
-<span class="linenos" data-linenos="185 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="138 "></span>    <span class="n">jsonl_handler</span> <span class="o">=</span> <span class="p">{</span>
+<span class="linenos" data-linenos="139 "></span>        <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.jsonl&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
+<span class="linenos" data-linenos="140 "></span>        <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
+<span class="linenos" data-linenos="141 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="142 "></span>    <span class="k">if</span> <span class="n">production</span><span class="p">:</span>
+<span class="linenos" data-linenos="143 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serializable_compact</span>
+<span class="linenos" data-linenos="144 "></span>    <span class="k">else</span><span class="p">:</span>
+<span class="linenos" data-linenos="145 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;serialize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos="146 "></span>
+<span class="linenos" data-linenos="147 "></span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos" data-linenos="148 "></span>        <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="149 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="150 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<span class="linenos" data-linenos="151 "></span>                <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
+<span class="linenos" data-linenos="152 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="153 "></span>            <span class="n">jsonl_handler</span><span class="p">,</span>
+<span class="linenos" data-linenos="154 "></span>            <span class="p">{</span>
+<span class="linenos" data-linenos="155 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.log&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
+<span class="linenos" data-linenos="156 "></span>                <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
+<span class="linenos" data-linenos="157 "></span>            <span class="p">},</span>
+<span class="linenos" data-linenos="158 "></span>        <span class="p">],</span>
+<span class="linenos" data-linenos="159 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="160 "></span>
+<span class="linenos" data-linenos="161 "></span>
+<span class="linenos" data-linenos="162 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="163 "></span><span class="k">def</span> <span class="nf">build_logger_config</span><span class="p">(</span>
+<span class="linenos" data-linenos="164 "></span>    <span class="n">path_parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="165 "></span>    <span class="o">*</span><span class="p">,</span> <span class="n">format_handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">_format_jsonl_handler</span><span class="p">,</span>
+<span class="linenos" data-linenos="166 "></span>    <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos="167 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="linenos" data-linenos="168 "></span>    <span class="sd">&quot;&quot;&quot;Build the loguru configuration. Use with `loguru.configure(**configuration)`.</span>
+<span class="linenos" data-linenos="169 "></span>
+<span class="linenos" data-linenos="170 "></span><span class="sd">    &gt; See example use in `activate_debug_logging`</span>
+<span class="linenos" data-linenos="171 "></span>
+<span class="linenos" data-linenos="172 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="173 "></span><span class="sd">        path_parent: Path to the directory where the &#39;.logs/&#39; folder should be created. Default is this package</span>
+<span class="linenos" data-linenos="174 "></span><span class="sd">        production: if True, will tweak logging configuration for production code. Default is True</span>
+<span class="linenos" data-linenos="175 "></span>
+<span class="linenos" data-linenos="176 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="177 "></span><span class="sd">        Dict[str, Any]: the logger configuration as a dictionary</span>
+<span class="linenos" data-linenos="178 "></span>
+<span class="linenos" data-linenos="179 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="180 "></span>    <span class="k">if</span> <span class="n">path_parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="181 "></span>        <span class="n">path_parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="linenos" data-linenos="182 "></span>
+<span class="linenos" data-linenos="183 "></span>    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">path_parent</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span>
+<span class="linenos" data-linenos="184 "></span>    <span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="185 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Started logging to </span><span class="si">{</span><span class="n">log_dir</span><span class="si">}</span><span class="s1"> (production=</span><span class="si">{</span><span class="n">production</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 <span class="linenos" data-linenos="186 "></span>
-<span class="linenos" data-linenos="187 "></span>
-<span class="linenos" data-linenos="188 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="189 "></span><span class="k">def</span> <span class="nf">activate_debug_logging</span><span class="p">(</span>
-<span class="linenos" data-linenos="190 "></span>    <span class="o">*</span><span class="p">,</span> <span class="n">pkg_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<span class="linenos" data-linenos="191 "></span>    <span class="n">clear_log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="linenos" data-linenos="192 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="193 "></span>    <span class="sd">&quot;&quot;&quot;Wrap `build_logger_config` to configure verbose logging for debug use.</span>
-<span class="linenos" data-linenos="194 "></span>
-<span class="linenos" data-linenos="195 "></span><span class="sd">    Args:</span>
-<span class="linenos" data-linenos="196 "></span><span class="sd">        pkg_names: list of string package names to activate. If empty, likely no log output.</span>
-<span class="linenos" data-linenos="197 "></span><span class="sd">        path_project: path to the project directory. Defaults to `CWD` if not specified</span>
-<span class="linenos" data-linenos="198 "></span><span class="sd">        clear_log: if True, delete all log files that haven&#39;t been updated for at least an hour. Default is False</span>
-<span class="linenos" data-linenos="199 "></span>
-<span class="linenos" data-linenos="200 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="201 "></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">path_project</span><span class="p">:</span>
-<span class="linenos" data-linenos="202 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
-<span class="linenos" data-linenos="203 "></span>
-<span class="linenos" data-linenos="204 "></span>    <span class="c1"># See an example of toggling loguru at: https://github.com/KyleKing/calcipy/tree/examples/loguru-toggle</span>
-<span class="linenos" data-linenos="205 "></span>    <span class="k">for</span> <span class="n">pkg_name</span> <span class="ow">in</span> <span class="n">pkg_names</span><span class="p">:</span>
-<span class="linenos" data-linenos="206 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">pkg_name</span><span class="p">)</span>
-<span class="linenos" data-linenos="207 "></span>
-<span class="linenos" data-linenos="208 "></span>    <span class="k">if</span> <span class="n">clear_log</span><span class="p">:</span>
-<span class="linenos" data-linenos="209 "></span>        <span class="n">hour</span> <span class="o">=</span> <span class="mi">3600</span>
-<span class="linenos" data-linenos="210 "></span>        <span class="n">delete_old_files</span><span class="p">(</span><span class="n">path_project</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="o">=</span><span class="n">hour</span><span class="p">)</span>
-<span class="linenos" data-linenos="211 "></span>
-<span class="linenos" data-linenos="212 "></span>    <span class="n">log_config</span> <span class="o">=</span> <span class="n">build_logger_config</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">production</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos" data-linenos="213 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="n">log_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="214 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
-<span class="linenos" data-linenos="215 "></span>        <span class="s1">&#39;Started logging to </span><span class="si">{path_project}</span><span class="s1">/.logs with </span><span class="si">{log_config}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span>
-<span class="linenos" data-linenos="216 "></span>        <span class="n">log_config</span><span class="o">=</span><span class="n">log_config</span><span class="p">,</span>
-<span class="linenos" data-linenos="217 "></span>    <span class="p">)</span>
+<span class="linenos" data-linenos="187 "></span>    <span class="k">return</span> <span class="n">format_handler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">production</span><span class="o">=</span><span class="n">production</span><span class="p">)</span>
+<span class="linenos" data-linenos="188 "></span>
+<span class="linenos" data-linenos="189 "></span>
+<span class="linenos" data-linenos="190 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="191 "></span><span class="k">def</span> <span class="nf">activate_debug_logging</span><span class="p">(</span>
+<span class="linenos" data-linenos="192 "></span>    <span class="o">*</span><span class="p">,</span> <span class="n">pkg_names</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">path_project</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos="193 "></span>    <span class="n">clear_log</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="linenos" data-linenos="194 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="195 "></span>    <span class="sd">&quot;&quot;&quot;Wrap `build_logger_config` to configure verbose logging for debug use.</span>
+<span class="linenos" data-linenos="196 "></span>
+<span class="linenos" data-linenos="197 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="198 "></span><span class="sd">        pkg_names: list of string package names to activate. If empty, likely no log output.</span>
+<span class="linenos" data-linenos="199 "></span><span class="sd">        path_project: path to the project directory. Defaults to `CWD` if not specified</span>
+<span class="linenos" data-linenos="200 "></span><span class="sd">        clear_log: if True, delete all log files that haven&#39;t been updated for at least an hour. Default is False</span>
+<span class="linenos" data-linenos="201 "></span>
+<span class="linenos" data-linenos="202 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="203 "></span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">path_project</span><span class="p">:</span>
+<span class="linenos" data-linenos="204 "></span>        <span class="n">path_project</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span>
+<span class="linenos" data-linenos="205 "></span>
+<span class="linenos" data-linenos="206 "></span>    <span class="c1"># See an example of toggling loguru at: https://github.com/KyleKing/calcipy/tree/examples/loguru-toggle</span>
+<span class="linenos" data-linenos="207 "></span>    <span class="k">for</span> <span class="n">pkg_name</span> <span class="ow">in</span> <span class="n">pkg_names</span><span class="p">:</span>
+<span class="linenos" data-linenos="208 "></span>        <span class="n">logger</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">pkg_name</span><span class="p">)</span>
+<span class="linenos" data-linenos="209 "></span>
+<span class="linenos" data-linenos="210 "></span>    <span class="k">if</span> <span class="n">clear_log</span><span class="p">:</span>
+<span class="linenos" data-linenos="211 "></span>        <span class="n">hour</span> <span class="o">=</span> <span class="mi">3600</span>
+<span class="linenos" data-linenos="212 "></span>        <span class="n">delete_old_files</span><span class="p">(</span><span class="n">path_project</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span><span class="p">,</span> <span class="n">ttl_seconds</span><span class="o">=</span><span class="n">hour</span><span class="p">)</span>
+<span class="linenos" data-linenos="213 "></span>
+<span class="linenos" data-linenos="214 "></span>    <span class="n">log_config</span> <span class="o">=</span> <span class="n">build_logger_config</span><span class="p">(</span><span class="n">path_project</span><span class="p">,</span> <span class="n">production</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="linenos" data-linenos="215 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="n">log_config</span><span class="p">)</span>
+<span class="linenos" data-linenos="216 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
+<span class="linenos" data-linenos="217 "></span>        <span class="s1">&#39;Started logging to </span><span class="si">{path_project}</span><span class="s1">/.logs with </span><span class="si">{log_config}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_project</span><span class="o">=</span><span class="n">path_project</span><span class="p">,</span>
+<span class="linenos" data-linenos="218 "></span>        <span class="n">log_config</span><span class="o">=</span><span class="n">log_config</span><span class="p">,</span>
+<span class="linenos" data-linenos="219 "></span>    <span class="p">)</span>
 </code></pre></div>
 </details>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
@@ -1109,29 +1111,21 @@
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>pkg_names</td>
-<td>None</td>
 <td>list of string package names to activate. If empty, likely no log output.</td>
-<td>None</td>
 </tr>
 <tr>
 <td>path_project</td>
-<td>None</td>
 <td>path to the project directory. Defaults to <code>CWD</code> if not specified</td>
-<td>None</td>
 </tr>
 <tr>
 <td>clear_log</td>
-<td>None</td>
 <td>if True, delete all log files that haven&rsquo;t been updated for at least an hour. Default is False</td>
-<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1171,50 +1165,30 @@
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">build_logger_config</span><span class="p">(</span>
 <span class="linenos" data-linenos="2 "></span>    <span class="n">path_parent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="linenos" data-linenos="3 "></span>    <span class="o">*</span><span class="p">,</span>
-<span class="linenos" data-linenos="4 "></span>    <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos" data-linenos="5 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="linenos" data-linenos="4 "></span>    <span class="n">format_handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">function</span> <span class="n">_format_jsonl_handler</span> <span class="n">at</span> <span class="mh">0x7ffc6131b280</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="linenos" data-linenos="5 "></span>    <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos="6 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 </code></pre></div>
 <p>Build the loguru configuration. Use with <code>loguru.configure(**configuration)</code>.</p>
-<div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="c1"># Typical example enabling loguru for a package</span>
-<span class="linenos" data-linenos=" 2 "></span>
-<span class="linenos" data-linenos=" 3 "></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="kn">from</span> <span class="nn">loguru</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="kn">from</span> <span class="nn">calcipy</span> <span class="kn">import</span> <span class="n">__pkg_name__</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="kn">from</span> <span class="nn">calcipy.log_helpers</span> <span class="kn">import</span> <span class="n">build_logger_config</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="n">logger</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="n">__pkg_name__</span><span class="p">)</span>  <span class="c1"># This will enable output from calcipy, which is off by default</span>
-<span class="linenos" data-linenos="11 "></span><span class="c1"># See an example of toggling loguru at: https://github.com/KyleKing/calcipy/tree/examples/loguru-toggle</span>
-<span class="linenos" data-linenos="12 "></span>
-<span class="linenos" data-linenos="13 "></span><span class="n">path_parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos" data-linenos="14 "></span><span class="n">log_config</span> <span class="o">=</span> <span class="n">build_logger_config</span><span class="p">(</span><span class="n">path_parent</span><span class="p">,</span> <span class="n">production</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="linenos" data-linenos="15 "></span><span class="n">logger</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="n">log_config</span><span class="p">)</span>
-<span class="linenos" data-linenos="16 "></span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Started logging to </span><span class="si">{path_parent}</span><span class="s1">/.logs with </span><span class="si">{log_config}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_parent</span><span class="o">=</span><span class="n">path_parent</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>            <span class="n">log_config</span><span class="o">=</span><span class="n">log_config</span><span class="p">)</span>
-</code></pre></div>
+<blockquote>
+<p>See example use in <code>activate_debug_logging</code></p>
+</blockquote>
 <p><strong>Parameters:</strong></p>
 <table>
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>path_parent</td>
-<td>None</td>
 <td>Path to the directory where the &lsquo;.logs/&rsquo; folder should be created. Default is this package</td>
-<td>None</td>
 </tr>
 <tr>
 <td>production</td>
-<td>None</td>
 <td>if True, will tweak logging configuration for production code. Default is True</td>
-<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1234,67 +1208,31 @@
 </tbody>
 </table>
 <details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">build_logger_config</span><span class="p">(</span><span class="n">path_parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Build the loguru configuration. Use with `loguru.configure(**configuration)`.</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="sd">    ```py</span>
-<span class="linenos" data-linenos=" 6 "></span><span class="sd">    # Typical example enabling loguru for a package</span>
-<span class="linenos" data-linenos=" 7 "></span>
-<span class="linenos" data-linenos=" 8 "></span><span class="sd">    from pathlib import Path</span>
-<span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="sd">    from loguru import logger</span>
-<span class="linenos" data-linenos="11 "></span>
-<span class="linenos" data-linenos="12 "></span><span class="sd">    from calcipy import __pkg_name__</span>
-<span class="linenos" data-linenos="13 "></span><span class="sd">    from calcipy.log_helpers import build_logger_config</span>
+<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">build_logger_config</span><span class="p">(</span>
+<span class="linenos" data-linenos=" 3 "></span>    <span class="n">path_parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 4 "></span>    <span class="o">*</span><span class="p">,</span> <span class="n">format_handler</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">bool</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="n">_format_jsonl_handler</span><span class="p">,</span>
+<span class="linenos" data-linenos=" 5 "></span>    <span class="n">production</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="linenos" data-linenos=" 6 "></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="linenos" data-linenos=" 7 "></span>    <span class="sd">&quot;&quot;&quot;Build the loguru configuration. Use with `loguru.configure(**configuration)`.</span>
+<span class="linenos" data-linenos=" 8 "></span>
+<span class="linenos" data-linenos=" 9 "></span><span class="sd">    &gt; See example use in `activate_debug_logging`</span>
+<span class="linenos" data-linenos="10 "></span>
+<span class="linenos" data-linenos="11 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="12 "></span><span class="sd">        path_parent: Path to the directory where the &#39;.logs/&#39; folder should be created. Default is this package</span>
+<span class="linenos" data-linenos="13 "></span><span class="sd">        production: if True, will tweak logging configuration for production code. Default is True</span>
 <span class="linenos" data-linenos="14 "></span>
-<span class="linenos" data-linenos="15 "></span><span class="sd">    logger.enable(__pkg_name__)  # This will enable output from calcipy, which is off by default</span>
-<span class="linenos" data-linenos="16 "></span><span class="sd">    # See an example of toggling loguru at: https://github.com/KyleKing/calcipy/tree/examples/loguru-toggle</span>
+<span class="linenos" data-linenos="15 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="16 "></span><span class="sd">        Dict[str, Any]: the logger configuration as a dictionary</span>
 <span class="linenos" data-linenos="17 "></span>
-<span class="linenos" data-linenos="18 "></span><span class="sd">    path_parent = Path(__file__).resolve().parent</span>
-<span class="linenos" data-linenos="19 "></span><span class="sd">    log_config = build_logger_config(path_parent, production=False)</span>
-<span class="linenos" data-linenos="20 "></span><span class="sd">    logger.configure(**log_config)</span>
-<span class="linenos" data-linenos="21 "></span><span class="sd">    logger.info(&#39;Started logging to {path_parent}/.logs with {log_config}&#39;, path_parent=path_parent,</span>
-<span class="linenos" data-linenos="22 "></span><span class="sd">                log_config=log_config)</span>
-<span class="linenos" data-linenos="23 "></span><span class="sd">    ```</span>
-<span class="linenos" data-linenos="24 "></span>
-<span class="linenos" data-linenos="25 "></span><span class="sd">    Args:</span>
-<span class="linenos" data-linenos="26 "></span><span class="sd">        path_parent: Path to the directory where the &#39;.logs/&#39; folder should be created. Default is this package</span>
-<span class="linenos" data-linenos="27 "></span><span class="sd">        production: if True, will tweak logging configuration for production code. Default is True</span>
-<span class="linenos" data-linenos="28 "></span>
-<span class="linenos" data-linenos="29 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="30 "></span><span class="sd">        Dict[str, Any]: the logger configuration as a dictionary</span>
-<span class="linenos" data-linenos="31 "></span>
-<span class="linenos" data-linenos="32 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="33 "></span>    <span class="k">if</span> <span class="n">path_parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="linenos" data-linenos="34 "></span>        <span class="n">path_parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos" data-linenos="35 "></span>
-<span class="linenos" data-linenos="36 "></span>    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">path_parent</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span>
-<span class="linenos" data-linenos="37 "></span>    <span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="linenos" data-linenos="38 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Started logging to </span><span class="si">{</span><span class="n">log_dir</span><span class="si">}</span><span class="s1"> (production=</span><span class="si">{</span><span class="n">production</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="39 "></span>    <span class="n">log_level</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span>
-<span class="linenos" data-linenos="40 "></span>
-<span class="linenos" data-linenos="41 "></span>    <span class="n">jsonl_handler</span> <span class="o">=</span> <span class="p">{</span>
-<span class="linenos" data-linenos="42 "></span>        <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.jsonl&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
-<span class="linenos" data-linenos="43 "></span>        <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="44 "></span>    <span class="p">}</span>
-<span class="linenos" data-linenos="45 "></span>    <span class="k">if</span> <span class="n">production</span><span class="p">:</span>
-<span class="linenos" data-linenos="46 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;format&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">serializable_compact</span>
-<span class="linenos" data-linenos="47 "></span>    <span class="k">else</span><span class="p">:</span>
-<span class="linenos" data-linenos="48 "></span>        <span class="n">jsonl_handler</span><span class="p">[</span><span class="s1">&#39;serialize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="linenos" data-linenos="49 "></span>
-<span class="linenos" data-linenos="50 "></span>    <span class="k">return</span> <span class="p">{</span>
-<span class="linenos" data-linenos="51 "></span>        <span class="s1">&#39;handlers&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="linenos" data-linenos="52 "></span>            <span class="p">{</span>
-<span class="linenos" data-linenos="53 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span> <span class="k">if</span> <span class="n">production</span> <span class="k">else</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
-<span class="linenos" data-linenos="54 "></span>                <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="55 "></span>            <span class="p">},</span>
-<span class="linenos" data-linenos="56 "></span>            <span class="n">jsonl_handler</span><span class="p">,</span>
-<span class="linenos" data-linenos="57 "></span>            <span class="p">{</span>
-<span class="linenos" data-linenos="58 "></span>                <span class="s1">&#39;sink&#39;</span><span class="p">:</span> <span class="n">log_dir</span> <span class="o">/</span> <span class="s1">&#39;debug-</span><span class="si">{time}</span><span class="s1">.log&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">log_level</span><span class="p">,</span>
-<span class="linenos" data-linenos="59 "></span>                <span class="s1">&#39;rotation&#39;</span><span class="p">:</span> <span class="s1">&#39;1h&#39;</span><span class="p">,</span> <span class="s1">&#39;backtrace&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;diagnose&#39;</span><span class="p">:</span> <span class="ow">not</span> <span class="n">production</span><span class="p">,</span>
-<span class="linenos" data-linenos="60 "></span>            <span class="p">},</span>
-<span class="linenos" data-linenos="61 "></span>        <span class="p">],</span>
-<span class="linenos" data-linenos="62 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="18 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="19 "></span>    <span class="k">if</span> <span class="n">path_parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="linenos" data-linenos="20 "></span>        <span class="n">path_parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span>
+<span class="linenos" data-linenos="21 "></span>
+<span class="linenos" data-linenos="22 "></span>    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">path_parent</span> <span class="o">/</span> <span class="n">_LOG_SUB_DIR</span>
+<span class="linenos" data-linenos="23 "></span>    <span class="n">log_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="linenos" data-linenos="24 "></span>    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Started logging to </span><span class="si">{</span><span class="n">log_dir</span><span class="si">}</span><span class="s1"> (production=</span><span class="si">{</span><span class="n">production</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="25 "></span>
+<span class="linenos" data-linenos="26 "></span>    <span class="k">return</span> <span class="n">format_handler</span><span class="p">(</span><span class="n">log_dir</span><span class="o">=</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">production</span><span class="o">=</span><span class="n">production</span><span class="p">)</span>
 </code></pre></div>
 </details>
 <h3 id="log_action">log_action<a class="headerlink" href="#log_action" title="Permanent link">⚓︎</a></h3>
@@ -1311,35 +1249,25 @@
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>message</td>
-<td>None</td>
 <td>string message to describe the context</td>
-<td>None</td>
 </tr>
 <tr>
 <td>level</td>
-<td>None</td>
 <td>log level. Default is <code>INFO</code></td>
-<td>None</td>
 </tr>
 <tr>
 <td>_logger</td>
-<td>None</td>
 <td>Optional logger instance</td>
-<td>None</td>
 </tr>
 <tr>
 <td>kwargs</td>
-<td>None</td>
 <td>function keyword arguments passed to the start log statement</td>
-<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1400,17 +1328,13 @@ https://github.com/Delgan/loguru/blob/44f6771/loguru/_handler.py#L222</p>
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>record</td>
-<td>None</td>
 <td>dictionary passed by loguru for formatting</td>
-<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1438,7 +1362,7 @@ https://github.com/Delgan/loguru/blob/44f6771/loguru/_handler.py#L222</p>
 <span class="linenos" data-linenos=" 7 "></span><span class="sd">    Based on the `_serialize_record` method:</span>
 <span class="linenos" data-linenos=" 8 "></span><span class="sd">    https://github.com/Delgan/loguru/blob/44f6771/loguru/_handler.py#L222</span>
 <span class="linenos" data-linenos=" 9 "></span>
-<span class="linenos" data-linenos="10 "></span><span class="sd">    ```py</span>
+<span class="linenos" data-linenos="10 "></span><span class="sd">    ```python3</span>
 <span class="linenos" data-linenos="11 "></span><span class="sd">    from calcipy.log_helpers import serializable_compact</span>
 <span class="linenos" data-linenos="12 "></span>
 <span class="linenos" data-linenos="13 "></span><span class="sd">    logger.add(LOG_DIR / &#39;pkg-compact-{time}.jsonl&#39;, mode=&#39;w&#39;, level=logging.INFO,</span>

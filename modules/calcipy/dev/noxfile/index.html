@@ -874,7 +874,7 @@ from ..doit_tasks.test import task_coverage, task_test
 from ..file_helpers import if_found_unlink</p>
 <p>has_test_imports = False
 try:
-    from nox_poetry import session
+    from nox_poetry import session as nox_session
     from nox_poetry.poetry import DistributionFormat
     from nox_poetry.sessions import Session
     has_test_imports = True
@@ -1051,7 +1051,7 @@ except ImportError:  # pragma: no cover
 <span class="ss">        else:</span>
 <span class="ss">            raise NotImplementedError(f&#39;Unable to run {action} ({type(action)})&#39;)</span>
 
-<span class="ss">@session(python=DG.test.pythons, reuse_venv=True)</span>
+<span class="ss">@nox_session(python=DG.test.pythons, reuse_venv=True)</span>
 <span class="ss">def tests(session: Session) -&gt; None:</span>
 <span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">versions</span><span class="p">.</span><span class="w"></span>
 
@@ -1062,7 +1062,7 @@ except ImportError:  # pragma: no cover
 <span class="ss">    session.install(&#39;.[dev]&#39;, &#39;.[test]&#39;)</span>
 <span class="ss">    _run_doit_task(session, task_test)</span>
 
-<span class="ss">@session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
 <span class="ss">def coverage(session: Session) -&gt; None:</span>
 <span class="ss">    &quot;&quot;&quot;</span><span class="n">Run</span><span class="w"> </span><span class="n">doit</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">python</span><span class="w"> </span><span class="n">versions</span><span class="p">.</span><span class="w"></span>
 
@@ -1073,7 +1073,7 @@ except ImportError:  # pragma: no cover
 <span class="ss">    session.install(&#39;.[dev]&#39;, &#39;.[test]&#39;)</span>
 <span class="ss">    _run_doit_task(session, task_coverage)</span>
 
-<span class="ss">@session(python=[DG.test.pythons[-1]], reuse_venv=False)</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=False)</span>
 <span class="ss">def build_dist(session: Session) -&gt; None:</span>
 <span class="ss">    &quot;&quot;&quot;</span><span class="n">Build</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">project</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">within</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">controlled</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">repeatability</span><span class="p">.</span><span class="w"></span>
 
@@ -1088,7 +1088,7 @@ except ImportError:  # pragma: no cover
 <span class="ss">    session.install(path_wheel)</span>
 <span class="ss">    session.run(*shlex.split(&#39;python scripts/check_imports.py&#39;), stdout=True)</span>
 
-<span class="ss">@session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
 <span class="ss">def build_check(session: Session) -&gt; None:</span>
 <span class="ss">    &quot;&quot;&quot;</span><span class="k">Check</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">built</span><span class="w"> </span><span class="k">output</span><span class="w"> </span><span class="n">meets</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">checks</span><span class="p">.</span><span class="w"></span>
 
@@ -1105,7 +1105,7 @@ except ImportError:  # pragma: no cover
 <span class="ss">    # PLANNED: Troubleshoot why pyroma score is so low (6/10)</span>
 <span class="ss">    session.run(&#39;pyroma&#39;, &#39;--file&#39;, path_sdist.as_posix(), &#39;--min=6&#39;, stdout=True)</span>
 
-<span class="ss">@session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
+<span class="ss">@nox_session(python=[DG.test.pythons[-1]], reuse_venv=True)</span>
 <span class="ss">def check_safety(session: Session) -&gt; None:</span>
 <span class="ss">    &quot;&quot;&quot;</span><span class="k">Check</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">vulnerabilities</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">safety</span><span class="p">.</span><span class="w"></span>
 

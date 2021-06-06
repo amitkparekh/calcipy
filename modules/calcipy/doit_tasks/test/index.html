@@ -1102,7 +1102,7 @@
 <span class="linenos" data-linenos=" 69 "></span>
 <span class="linenos" data-linenos=" 70 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos=" 71 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos=" 72 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 72 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos=" 73 "></span>    <span class="p">])</span>
 <span class="linenos" data-linenos=" 74 "></span>
 <span class="linenos" data-linenos=" 75 "></span>
@@ -1115,7 +1115,7 @@
 <span class="linenos" data-linenos=" 82 "></span>
 <span class="linenos" data-linenos=" 83 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos=" 84 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos=" 85 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; --ff -vv&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos=" 85 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; --ff -vv&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos=" 86 "></span>    <span class="p">])</span>
 <span class="linenos" data-linenos=" 87 "></span>
 <span class="linenos" data-linenos=" 88 "></span>
@@ -1129,179 +1129,183 @@
 <span class="linenos" data-linenos=" 96 "></span><span class="sd">        DoitTask: doit task</span>
 <span class="linenos" data-linenos=" 97 "></span>
 <span class="linenos" data-linenos=" 98 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos=" 99 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">([</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -m &quot;%(marker)s&quot;&#39;</span><span class="p">)])</span>
-<span class="linenos" data-linenos="100 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
-<span class="linenos" data-linenos="101 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="102 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
-<span class="linenos" data-linenos="103 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
-<span class="linenos" data-linenos="104 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
-<span class="linenos" data-linenos="105 "></span>        <span class="p">),</span>
-<span class="linenos" data-linenos="106 "></span>    <span class="p">}]</span>
-<span class="linenos" data-linenos="107 "></span>    <span class="k">return</span> <span class="n">task</span>
-<span class="linenos" data-linenos="108 "></span>
-<span class="linenos" data-linenos="109 "></span>
-<span class="linenos" data-linenos="110 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="111 "></span><span class="k">def</span> <span class="nf">task_test_keyword</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="112 "></span>    <span class="sd">&quot;&quot;&quot;Specify a keyword to run a subset of tests.</span>
-<span class="linenos" data-linenos="113 "></span>
-<span class="linenos" data-linenos="114 "></span><span class="sd">    Example: `doit run test_keyword -k &quot;KEYWORD&quot;`</span>
+<span class="linenos" data-linenos=" 99 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">(</span>
+<span class="linenos" data-linenos="100 "></span>        <span class="p">[</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -m &quot;%(marker)s&quot;&#39;</span><span class="p">)],</span>
+<span class="linenos" data-linenos="101 "></span>    <span class="p">)</span>
+<span class="linenos" data-linenos="102 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="linenos" data-linenos="103 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="104 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
+<span class="linenos" data-linenos="105 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
+<span class="linenos" data-linenos="106 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
+<span class="linenos" data-linenos="107 "></span>        <span class="p">),</span>
+<span class="linenos" data-linenos="108 "></span>    <span class="p">}]</span>
+<span class="linenos" data-linenos="109 "></span>    <span class="k">return</span> <span class="n">task</span>
+<span class="linenos" data-linenos="110 "></span>
+<span class="linenos" data-linenos="111 "></span>
+<span class="linenos" data-linenos="112 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="113 "></span><span class="k">def</span> <span class="nf">task_test_keyword</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="114 "></span>    <span class="sd">&quot;&quot;&quot;Specify a keyword to run a subset of tests.</span>
 <span class="linenos" data-linenos="115 "></span>
-<span class="linenos" data-linenos="116 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="117 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="118 "></span>
-<span class="linenos" data-linenos="119 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="120 "></span>    <span class="k">return</span> <span class="p">{</span>
-<span class="linenos" data-linenos="121 "></span>        <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="linenos" data-linenos="122 "></span>            <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -k &quot;%(keyword)s&quot;&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="123 "></span>        <span class="p">],</span>
-<span class="linenos" data-linenos="124 "></span>        <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[{</span>
-<span class="linenos" data-linenos="125 "></span>            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="126 "></span>            <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
-<span class="linenos" data-linenos="127 "></span>                <span class="s1">&#39;Runs only tests that match the string pattern</span><span class="se">\n</span><span class="s1">See: &#39;</span>
-<span class="linenos" data-linenos="128 "></span>                <span class="s1">&#39;https://docs.pytest.org/en/latest/usage.html#specifying-tests-selecting-tests&#39;</span>
-<span class="linenos" data-linenos="129 "></span>            <span class="p">),</span>
-<span class="linenos" data-linenos="130 "></span>        <span class="p">}],</span>
-<span class="linenos" data-linenos="131 "></span>        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="linenos" data-linenos="132 "></span>    <span class="p">}</span>
-<span class="linenos" data-linenos="133 "></span>
-<span class="linenos" data-linenos="134 "></span>
-<span class="linenos" data-linenos="135 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="136 "></span><span class="k">def</span> <span class="nf">task_coverage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="137 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest and create coverage and test reports.</span>
-<span class="linenos" data-linenos="138 "></span>
-<span class="linenos" data-linenos="139 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="140 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="141 "></span>
-<span class="linenos" data-linenos="142 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="143 "></span>    <span class="n">path_tests</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span>
-<span class="linenos" data-linenos="144 "></span>    <span class="n">cov_dir</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_coverage_index</span><span class="o">.</span><span class="n">parent</span>
-<span class="linenos" data-linenos="145 "></span>    <span class="n">cov_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--cov-report=html:&quot;</span><span class="si">{</span><span class="n">cov_dir</span><span class="si">}</span><span class="s1">&quot;  --html=&quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_test_report</span><span class="si">}</span><span class="s1">&quot; --self-contained-html&#39;</span>
-<span class="linenos" data-linenos="146 "></span>    <span class="n">diff_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--html-report </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_diff_test_report</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="linenos" data-linenos="147 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="148 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> --cov=</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">cov_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="149 "></span>        <span class="s1">&#39;poetry run python -m coverage json&#39;</span><span class="p">,</span>  <span class="c1"># Create coverage.json file for &quot;_write_coverage_to_md&quot;</span>
-<span class="linenos" data-linenos="150 "></span>        <span class="s1">&#39;poetry run python -m coverage xml&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="151 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run diff-cover coverage.xml </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_diff</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">diff_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="152 "></span>    <span class="p">])</span>
-<span class="linenos" data-linenos="153 "></span>
-<span class="linenos" data-linenos="154 "></span>
-<span class="linenos" data-linenos="155 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
-<span class="linenos" data-linenos="156 "></span><span class="c1"># Other Test Tools (MyPy, etc.)</span>
+<span class="linenos" data-linenos="116 "></span><span class="sd">    Example: `doit run test_keyword -k &quot;KEYWORD&quot;`</span>
+<span class="linenos" data-linenos="117 "></span>
+<span class="linenos" data-linenos="118 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="119 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="120 "></span>
+<span class="linenos" data-linenos="121 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="122 "></span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos" data-linenos="123 "></span>        <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="p">[</span>
+<span class="linenos" data-linenos="124 "></span>            <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -k &quot;%(keyword)s&quot;&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="125 "></span>        <span class="p">],</span>
+<span class="linenos" data-linenos="126 "></span>        <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[{</span>
+<span class="linenos" data-linenos="127 "></span>            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="128 "></span>            <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
+<span class="linenos" data-linenos="129 "></span>                <span class="s1">&#39;Runs only tests that match the string pattern</span><span class="se">\n</span><span class="s1">See: &#39;</span>
+<span class="linenos" data-linenos="130 "></span>                <span class="s1">&#39;https://docs.pytest.org/en/latest/usage.html#specifying-tests-selecting-tests&#39;</span>
+<span class="linenos" data-linenos="131 "></span>            <span class="p">),</span>
+<span class="linenos" data-linenos="132 "></span>        <span class="p">}],</span>
+<span class="linenos" data-linenos="133 "></span>        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="linenos" data-linenos="134 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="135 "></span>
+<span class="linenos" data-linenos="136 "></span>
+<span class="linenos" data-linenos="137 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="138 "></span><span class="k">def</span> <span class="nf">task_coverage</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="139 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest and create coverage and test reports.</span>
+<span class="linenos" data-linenos="140 "></span>
+<span class="linenos" data-linenos="141 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="142 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="143 "></span>
+<span class="linenos" data-linenos="144 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="145 "></span>    <span class="n">path_tests</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span>
+<span class="linenos" data-linenos="146 "></span>    <span class="n">cov_dir</span> <span class="o">=</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_coverage_index</span><span class="o">.</span><span class="n">parent</span>
+<span class="linenos" data-linenos="147 "></span>    <span class="n">cov_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--cov-report=html:&quot;</span><span class="si">{</span><span class="n">cov_dir</span><span class="si">}</span><span class="s1">&quot;  --html=&quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_test_report</span><span class="si">}</span><span class="s1">&quot; --self-contained-html&#39;</span>
+<span class="linenos" data-linenos="148 "></span>    <span class="n">diff_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--html-report </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_diff_test_report</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="linenos" data-linenos="149 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="150 "></span>        <span class="n">Interactive</span><span class="p">(</span>
+<span class="linenos" data-linenos="151 "></span>            <span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> --cov=</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">cov_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="152 "></span>        <span class="p">),</span>
+<span class="linenos" data-linenos="153 "></span>        <span class="s1">&#39;poetry run python -m coverage json&#39;</span><span class="p">,</span>  <span class="c1"># Create coverage.json file for &quot;_write_coverage_to_md&quot;</span>
+<span class="linenos" data-linenos="154 "></span>        <span class="s1">&#39;poetry run python -m coverage xml&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="155 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run diff-cover coverage.xml </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_diff</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">diff_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="156 "></span>    <span class="p">])</span>
 <span class="linenos" data-linenos="157 "></span>
 <span class="linenos" data-linenos="158 "></span>
-<span class="linenos" data-linenos="159 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="160 "></span><span class="k">def</span> <span class="nf">task_check_types</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="161 "></span>    <span class="sd">&quot;&quot;&quot;Run type annotation checks.</span>
+<span class="linenos" data-linenos="159 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos="160 "></span><span class="c1"># Other Test Tools (MyPy, etc.)</span>
+<span class="linenos" data-linenos="161 "></span>
 <span class="linenos" data-linenos="162 "></span>
-<span class="linenos" data-linenos="163 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="164 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="165 "></span>
-<span class="linenos" data-linenos="166 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="167 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="168 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run mypy </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> --show-error-codes&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="169 "></span>    <span class="p">])</span>
-<span class="linenos" data-linenos="170 "></span>
-<span class="linenos" data-linenos="171 "></span>
-<span class="linenos" data-linenos="172 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
-<span class="linenos" data-linenos="173 "></span><span class="c1"># Test Output Interaction</span>
+<span class="linenos" data-linenos="163 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="164 "></span><span class="k">def</span> <span class="nf">task_check_types</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="165 "></span>    <span class="sd">&quot;&quot;&quot;Run type annotation checks.</span>
+<span class="linenos" data-linenos="166 "></span>
+<span class="linenos" data-linenos="167 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="168 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="169 "></span>
+<span class="linenos" data-linenos="170 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="171 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
+<span class="linenos" data-linenos="172 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run mypy </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> --show-error-codes&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="173 "></span>    <span class="p">])</span>
 <span class="linenos" data-linenos="174 "></span>
 <span class="linenos" data-linenos="175 "></span>
-<span class="linenos" data-linenos="176 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="177 "></span><span class="k">def</span> <span class="nf">task_open_test_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="178 "></span>    <span class="sd">&quot;&quot;&quot;Open the test and coverage files in default browser.</span>
+<span class="linenos" data-linenos="176 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos="177 "></span><span class="c1"># Test Output Interaction</span>
+<span class="linenos" data-linenos="178 "></span>
 <span class="linenos" data-linenos="179 "></span>
-<span class="linenos" data-linenos="180 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="181 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="182 "></span>
-<span class="linenos" data-linenos="183 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="184 "></span>    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
-<span class="linenos" data-linenos="185 "></span>        <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_coverage_index</span><span class="p">,)),</span>
-<span class="linenos" data-linenos="186 "></span>        <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_test_report</span><span class="p">,)),</span>
-<span class="linenos" data-linenos="187 "></span>    <span class="p">]</span>
-<span class="linenos" data-linenos="188 "></span>    <span class="k">if</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_mypy_index</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-<span class="linenos" data-linenos="189 "></span>        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_mypy_index</span><span class="p">,)))</span>
-<span class="linenos" data-linenos="190 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
-<span class="linenos" data-linenos="191 "></span>
-<span class="linenos" data-linenos="192 "></span>
-<span class="linenos" data-linenos="193 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
-<span class="linenos" data-linenos="194 "></span><span class="c1"># Implement long running ptw tasks</span>
+<span class="linenos" data-linenos="180 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="181 "></span><span class="k">def</span> <span class="nf">task_open_test_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="182 "></span>    <span class="sd">&quot;&quot;&quot;Open the test and coverage files in default browser.</span>
+<span class="linenos" data-linenos="183 "></span>
+<span class="linenos" data-linenos="184 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="185 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="186 "></span>
+<span class="linenos" data-linenos="187 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="188 "></span>    <span class="n">actions</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos" data-linenos="189 "></span>        <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_coverage_index</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="190 "></span>        <span class="p">(</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_test_report</span><span class="p">,)),</span>
+<span class="linenos" data-linenos="191 "></span>    <span class="p">]</span>
+<span class="linenos" data-linenos="192 "></span>    <span class="k">if</span> <span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_mypy_index</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+<span class="linenos" data-linenos="193 "></span>        <span class="n">actions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">open_in_browser</span><span class="p">,</span> <span class="p">(</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_mypy_index</span><span class="p">,)))</span>
+<span class="linenos" data-linenos="194 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">(</span><span class="n">actions</span><span class="p">)</span>
 <span class="linenos" data-linenos="195 "></span>
 <span class="linenos" data-linenos="196 "></span>
-<span class="linenos" data-linenos="197 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="198 "></span><span class="k">def</span> <span class="nf">ptw_task</span><span class="p">(</span><span class="n">cli_args</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="199 "></span>    <span class="sd">&quot;&quot;&quot;Return doit Interactive `ptw` task.</span>
+<span class="linenos" data-linenos="197 "></span><span class="c1"># ----------------------------------------------------------------------------------------------------------------------</span>
+<span class="linenos" data-linenos="198 "></span><span class="c1"># Implement long running ptw tasks</span>
+<span class="linenos" data-linenos="199 "></span>
 <span class="linenos" data-linenos="200 "></span>
-<span class="linenos" data-linenos="201 "></span><span class="sd">    Args:</span>
-<span class="linenos" data-linenos="202 "></span><span class="sd">        cli_args: string CLI args to pass to `ptw`</span>
-<span class="linenos" data-linenos="203 "></span>
-<span class="linenos" data-linenos="204 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="205 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="206 "></span>
-<span class="linenos" data-linenos="207 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="208 "></span>    <span class="k">return</span> <span class="p">{</span>
-<span class="linenos" data-linenos="209 "></span>        <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run ptw -- &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">cli_args</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)],</span>
-<span class="linenos" data-linenos="210 "></span>        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-<span class="linenos" data-linenos="211 "></span>    <span class="p">}</span>
-<span class="linenos" data-linenos="212 "></span>
-<span class="linenos" data-linenos="213 "></span>
-<span class="linenos" data-linenos="214 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="215 "></span><span class="k">def</span> <span class="nf">task_ptw_not_chrome</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="216 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for failed first and skip the CHROME marker.</span>
+<span class="linenos" data-linenos="201 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="202 "></span><span class="k">def</span> <span class="nf">ptw_task</span><span class="p">(</span><span class="n">cli_args</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="203 "></span>    <span class="sd">&quot;&quot;&quot;Return doit Interactive `ptw` task.</span>
+<span class="linenos" data-linenos="204 "></span>
+<span class="linenos" data-linenos="205 "></span><span class="sd">    Args:</span>
+<span class="linenos" data-linenos="206 "></span><span class="sd">        cli_args: string CLI args to pass to `ptw`</span>
+<span class="linenos" data-linenos="207 "></span>
+<span class="linenos" data-linenos="208 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="209 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="210 "></span>
+<span class="linenos" data-linenos="211 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="212 "></span>    <span class="k">return</span> <span class="p">{</span>
+<span class="linenos" data-linenos="213 "></span>        <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run ptw -- &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">cli_args</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)],</span>
+<span class="linenos" data-linenos="214 "></span>        <span class="s1">&#39;verbosity&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+<span class="linenos" data-linenos="215 "></span>    <span class="p">}</span>
+<span class="linenos" data-linenos="216 "></span>
 <span class="linenos" data-linenos="217 "></span>
-<span class="linenos" data-linenos="218 "></span><span class="sd">    kwargs: `-m &#39;not CHROME&#39; -vvv`</span>
-<span class="linenos" data-linenos="219 "></span>
-<span class="linenos" data-linenos="220 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="221 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="222 "></span>
-<span class="linenos" data-linenos="223 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="224 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-m &quot;not CHROME&quot; -vvv&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="225 "></span>
+<span class="linenos" data-linenos="218 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="219 "></span><span class="k">def</span> <span class="nf">task_ptw_not_chrome</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="220 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for failed first and skip the CHROME marker.</span>
+<span class="linenos" data-linenos="221 "></span>
+<span class="linenos" data-linenos="222 "></span><span class="sd">    kwargs: `-m &#39;not CHROME&#39; -vvv`</span>
+<span class="linenos" data-linenos="223 "></span>
+<span class="linenos" data-linenos="224 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="225 "></span><span class="sd">        DoitTask: doit task</span>
 <span class="linenos" data-linenos="226 "></span>
-<span class="linenos" data-linenos="227 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="228 "></span><span class="k">def</span> <span class="nf">task_ptw_ff</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="229 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for failed first and skip the CHROME marker.</span>
+<span class="linenos" data-linenos="227 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="228 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-m &quot;not CHROME&quot; -vvv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="229 "></span>
 <span class="linenos" data-linenos="230 "></span>
-<span class="linenos" data-linenos="231 "></span><span class="sd">    kwargs: `--last-failed --new-first -m &#39;not CHROME&#39; -vv`</span>
-<span class="linenos" data-linenos="232 "></span>
-<span class="linenos" data-linenos="233 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="234 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="235 "></span>
-<span class="linenos" data-linenos="236 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="237 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;--last-failed --new-first -m &quot;not CHROME&quot; -vv&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="238 "></span>
+<span class="linenos" data-linenos="231 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="232 "></span><span class="k">def</span> <span class="nf">task_ptw_ff</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="233 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for failed first and skip the CHROME marker.</span>
+<span class="linenos" data-linenos="234 "></span>
+<span class="linenos" data-linenos="235 "></span><span class="sd">    kwargs: `--last-failed --new-first -m &#39;not CHROME&#39; -vv`</span>
+<span class="linenos" data-linenos="236 "></span>
+<span class="linenos" data-linenos="237 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="238 "></span><span class="sd">        DoitTask: doit task</span>
 <span class="linenos" data-linenos="239 "></span>
-<span class="linenos" data-linenos="240 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="241 "></span><span class="k">def</span> <span class="nf">task_ptw_current</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="242 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for only tests with the CURRENT marker.</span>
+<span class="linenos" data-linenos="240 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="241 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;--last-failed --new-first -m &quot;not CHROME&quot; -vv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="242 "></span>
 <span class="linenos" data-linenos="243 "></span>
-<span class="linenos" data-linenos="244 "></span><span class="sd">    kwargs: `-m &#39;CURRENT&#39; -vv`</span>
-<span class="linenos" data-linenos="245 "></span>
-<span class="linenos" data-linenos="246 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="247 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="248 "></span>
-<span class="linenos" data-linenos="249 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="250 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-m &quot;CURRENT&quot; -vv&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="251 "></span>
+<span class="linenos" data-linenos="244 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="245 "></span><span class="k">def</span> <span class="nf">task_ptw_current</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="246 "></span>    <span class="sd">&quot;&quot;&quot;Run pytest watch for only tests with the CURRENT marker.</span>
+<span class="linenos" data-linenos="247 "></span>
+<span class="linenos" data-linenos="248 "></span><span class="sd">    kwargs: `-m &#39;CURRENT&#39; -vv`</span>
+<span class="linenos" data-linenos="249 "></span>
+<span class="linenos" data-linenos="250 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="251 "></span><span class="sd">        DoitTask: doit task</span>
 <span class="linenos" data-linenos="252 "></span>
-<span class="linenos" data-linenos="253 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos="254 "></span><span class="k">def</span> <span class="nf">task_ptw_marker</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos="255 "></span>    <span class="sd">&quot;&quot;&quot;Specify a marker to run a subset of tests in Interactive `ptw` task.</span>
+<span class="linenos" data-linenos="253 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="254 "></span>    <span class="k">return</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-m &quot;CURRENT&quot; -vv&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="255 "></span>
 <span class="linenos" data-linenos="256 "></span>
-<span class="linenos" data-linenos="257 "></span><span class="sd">    Example: `doit run ptw_marker -m &quot;not MARKER&quot;` or `doit run ptw_marker -m &quot;MARKER&quot;`</span>
-<span class="linenos" data-linenos="258 "></span>
-<span class="linenos" data-linenos="259 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="260 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="261 "></span>
-<span class="linenos" data-linenos="262 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="263 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-vvv -m &quot;</span><span class="si">%(marker)s</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
-<span class="linenos" data-linenos="264 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
-<span class="linenos" data-linenos="265 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="266 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
-<span class="linenos" data-linenos="267 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
-<span class="linenos" data-linenos="268 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
-<span class="linenos" data-linenos="269 "></span>        <span class="p">),</span>
-<span class="linenos" data-linenos="270 "></span>    <span class="p">}]</span>
-<span class="linenos" data-linenos="271 "></span>    <span class="k">return</span> <span class="n">task</span>
+<span class="linenos" data-linenos="257 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="258 "></span><span class="k">def</span> <span class="nf">task_ptw_marker</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="259 "></span>    <span class="sd">&quot;&quot;&quot;Specify a marker to run a subset of tests in Interactive `ptw` task.</span>
+<span class="linenos" data-linenos="260 "></span>
+<span class="linenos" data-linenos="261 "></span><span class="sd">    Example: `doit run ptw_marker -m &quot;not MARKER&quot;` or `doit run ptw_marker -m &quot;MARKER&quot;`</span>
+<span class="linenos" data-linenos="262 "></span>
+<span class="linenos" data-linenos="263 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="264 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="265 "></span>
+<span class="linenos" data-linenos="266 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="267 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">ptw_task</span><span class="p">(</span><span class="s1">&#39;-vvv -m &quot;</span><span class="si">%(marker)s</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+<span class="linenos" data-linenos="268 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="linenos" data-linenos="269 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="270 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
+<span class="linenos" data-linenos="271 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
+<span class="linenos" data-linenos="272 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
+<span class="linenos" data-linenos="273 "></span>        <span class="p">),</span>
+<span class="linenos" data-linenos="274 "></span>    <span class="p">}]</span>
+<span class="linenos" data-linenos="275 "></span>    <span class="k">return</span> <span class="n">task</span>
 </code></pre></div>
 </details>
 <h2 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">⚓︎</a></h2>
@@ -1316,17 +1320,13 @@
 <thead>
 <tr>
 <th>Name</th>
-<th>Type</th>
 <th>Description</th>
-<th>Default</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>cli_args</td>
-<td>None</td>
 <td>string CLI args to pass to <code>ptw</code></td>
-<td>None</td>
 </tr>
 </tbody>
 </table>
@@ -1426,11 +1426,13 @@
 <span class="linenos" data-linenos="11 "></span>    <span class="n">cov_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--cov-report=html:&quot;</span><span class="si">{</span><span class="n">cov_dir</span><span class="si">}</span><span class="s1">&quot;  --html=&quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_test_report</span><span class="si">}</span><span class="s1">&quot; --self-contained-html&#39;</span>
 <span class="linenos" data-linenos="12 "></span>    <span class="n">diff_html</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;--html-report </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_diff_test_report</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="linenos" data-linenos="13 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="14 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> --cov=</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">cov_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="15 "></span>        <span class="s1">&#39;poetry run python -m coverage json&#39;</span><span class="p">,</span>  <span class="c1"># Create coverage.json file for &quot;_write_coverage_to_md&quot;</span>
-<span class="linenos" data-linenos="16 "></span>        <span class="s1">&#39;poetry run python -m coverage xml&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run diff-cover coverage.xml </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_diff</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">diff_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="18 "></span>    <span class="p">])</span>
+<span class="linenos" data-linenos="14 "></span>        <span class="n">Interactive</span><span class="p">(</span>
+<span class="linenos" data-linenos="15 "></span>            <span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> --cov=</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">meta</span><span class="o">.</span><span class="n">pkg_name</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">cov_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="p">),</span>
+<span class="linenos" data-linenos="17 "></span>        <span class="s1">&#39;poetry run python -m coverage json&#39;</span><span class="p">,</span>  <span class="c1"># Create coverage.json file for &quot;_write_coverage_to_md&quot;</span>
+<span class="linenos" data-linenos="18 "></span>        <span class="s1">&#39;poetry run python -m coverage xml&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run diff-cover coverage.xml </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_diff</span><span class="si">}</span><span class="s1"> </span><span class="si">{</span><span class="n">diff_html</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="p">])</span>
 </code></pre></div>
 </details>
 <h3 id="task_nox">task_nox<a class="headerlink" href="#task_nox" title="Permanent link">⚓︎</a></h3>
@@ -1748,7 +1750,7 @@ Tests can be re-run in the last order with <code>poetry run pytest --randomly-se
 <span class="linenos" data-linenos="12 "></span>
 <span class="linenos" data-linenos="13 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="14 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="15 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos="16 "></span>    <span class="p">])</span>
 </code></pre></div>
 </details>
@@ -1780,7 +1782,7 @@ Tests can be re-run in the last order with <code>poetry run pytest --randomly-se
 <span class="linenos" data-linenos=" 7 "></span>
 <span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos=" 9 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="10 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; --ff -vv&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; --ff -vv&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos="11 "></span>    <span class="p">])</span>
 </code></pre></div>
 </details>
@@ -1816,7 +1818,7 @@ Tests can be re-run in the last order with <code>poetry run pytest --randomly-se
 <span class="linenos" data-linenos="10 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="11 "></span>    <span class="k">return</span> <span class="p">{</span>
 <span class="linenos" data-linenos="12 "></span>        <span class="s1">&#39;actions&#39;</span><span class="p">:</span> <span class="p">[</span>
-<span class="linenos" data-linenos="13 "></span>            <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -k &quot;%(keyword)s&quot;&#39;</span><span class="p">),</span>
+<span class="linenos" data-linenos="13 "></span>            <span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -k &quot;%(keyword)s&quot;&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos="14 "></span>        <span class="p">],</span>
 <span class="linenos" data-linenos="15 "></span>        <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">[{</span>
 <span class="linenos" data-linenos="16 "></span>            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;keyword&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
@@ -1859,15 +1861,17 @@ Tests can be re-run in the last order with <code>poetry run pytest --randomly-se
 <span class="linenos" data-linenos=" 8 "></span><span class="sd">        DoitTask: doit task</span>
 <span class="linenos" data-linenos=" 9 "></span>
 <span class="linenos" data-linenos="10 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="11 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">([</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -m &quot;%(marker)s&quot;&#39;</span><span class="p">)])</span>
-<span class="linenos" data-linenos="12 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="14 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
-<span class="linenos" data-linenos="15 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
-<span class="linenos" data-linenos="16 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
-<span class="linenos" data-linenos="17 "></span>        <span class="p">),</span>
-<span class="linenos" data-linenos="18 "></span>    <span class="p">}]</span>
-<span class="linenos" data-linenos="19 "></span>    <span class="k">return</span> <span class="n">task</span>
+<span class="linenos" data-linenos="11 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">(</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="p">[</span><span class="n">Interactive</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;poetry run python -m pytest &quot;</span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">path_tests</span><span class="si">}</span><span class="s1">&quot; </span><span class="si">{</span><span class="n">DG</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">args_pytest</span><span class="si">}</span><span class="s1"> -m &quot;%(marker)s&quot;&#39;</span><span class="p">)],</span>
+<span class="linenos" data-linenos="13 "></span>    <span class="p">)</span>
+<span class="linenos" data-linenos="14 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
+<span class="linenos" data-linenos="15 "></span>        <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;short&#39;</span><span class="p">:</span> <span class="s1">&#39;m&#39;</span><span class="p">,</span> <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="s1">&#39;marker&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+<span class="linenos" data-linenos="16 "></span>        <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="p">(</span>
+<span class="linenos" data-linenos="17 "></span>            <span class="s1">&#39;Runs test with specified marker logic</span><span class="se">\n</span><span class="s1">See: &#39;</span>
+<span class="linenos" data-linenos="18 "></span>            <span class="s1">&#39;https://docs.pytest.org/en/latest/example/markers.html?highlight=-m&#39;</span>
+<span class="linenos" data-linenos="19 "></span>        <span class="p">),</span>
+<span class="linenos" data-linenos="20 "></span>    <span class="p">}]</span>
+<span class="linenos" data-linenos="21 "></span>    <span class="k">return</span> <span class="n">task</span>
 </code></pre></div>
 </details>
                 

@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#unreleased" class="md-skip">
+        <a href="#2021030-2021-06-06" class="md-skip">
           Skip to content
         </a>
       
@@ -343,12 +343,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
-    Unreleased
+  <a href="#2021030-2021-06-06" class="md-nav__link">
+    2021.0.3.0 (2021-06-06)
   </a>
   
-    <nav class="md-nav" aria-label="Unreleased">
+    <nav class="md-nav" aria-label="2021.0.3.0 (2021-06-06)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#refactor" class="md-nav__link">
@@ -371,14 +385,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat" class="md-nav__link">
+  <a href="#feat_1" class="md-nav__link">
     Feat
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix" class="md-nav__link">
+  <a href="#fix_1" class="md-nav__link">
     Fix
   </a>
   
@@ -412,14 +426,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat_1" class="md-nav__link">
+  <a href="#feat_2" class="md-nav__link">
     Feat
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix_1" class="md-nav__link">
+  <a href="#fix_2" class="md-nav__link">
     Fix
   </a>
   
@@ -446,7 +460,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat_2" class="md-nav__link">
+  <a href="#feat_3" class="md-nav__link">
     Feat
   </a>
   
@@ -1005,12 +1019,26 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#unreleased" class="md-nav__link">
-    Unreleased
+  <a href="#2021030-2021-06-06" class="md-nav__link">
+    2021.0.3.0 (2021-06-06)
   </a>
   
-    <nav class="md-nav" aria-label="Unreleased">
+    <nav class="md-nav" aria-label="2021.0.3.0 (2021-06-06)">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#feat" class="md-nav__link">
+    Feat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    Fix
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#refactor" class="md-nav__link">
@@ -1033,14 +1061,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat" class="md-nav__link">
+  <a href="#feat_1" class="md-nav__link">
     Feat
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix" class="md-nav__link">
+  <a href="#fix_1" class="md-nav__link">
     Fix
   </a>
   
@@ -1074,14 +1102,14 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat_1" class="md-nav__link">
+  <a href="#feat_2" class="md-nav__link">
     Feat
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fix_1" class="md-nav__link">
+  <a href="#fix_2" class="md-nav__link">
     Fix
   </a>
   
@@ -1108,7 +1136,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#feat_2" class="md-nav__link">
+  <a href="#feat_3" class="md-nav__link">
     Feat
   </a>
   
@@ -1261,14 +1289,31 @@
                 
                   <h1>CHANGELOG</h1>
                 
-                <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">⚓︎</a></h2>
+                <h2 id="2021030-2021-06-06">2021.0.3.0 (2021-06-06)<a class="headerlink" href="#2021030-2021-06-06" title="Permanent link">⚓︎</a></h2>
+<h3 id="feat">Feat<a class="headerlink" href="#feat" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>add task to zip artifacts from testing</li>
+<li>implement pandas.to_markdown for cov table</li>
+</ul>
+<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>remove type_name from docstring for Google-style</li>
+<li>run pytest as a module for nox</li>
+</ul>
 <h3 id="refactor">Refactor<a class="headerlink" href="#refactor" title="Permanent link">⚓︎</a></h3>
 <ul>
+<li>see if only one space is okay for skipcq</li>
+<li>fix anti-pattern with nox session decorator and arg</li>
+<li>improve code quality</li>
+<li>try to suppress deepsource errors</li>
+<li>address DeepSource issues</li>
+<li>split up set_paths from DG</li>
+<li>fix formatting error from pre-push</li>
 <li>rename doc_dir to doc_sub_dir for clarity</li>
 <li>apply 0.0.10 template</li>
 </ul>
 <h2 id="2021020-2021-06-05">2021.0.2.0 (2021-06-05)<a class="headerlink" href="#2021020-2021-06-05" title="Permanent link">⚓︎</a></h2>
-<h3 id="feat">Feat<a class="headerlink" href="#feat" title="Permanent link">⚓︎</a></h3>
+<h3 id="feat_1">Feat<a class="headerlink" href="#feat_1" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li><strong>#58</strong>: implement doc task and merge serve_docs</li>
 <li>make loading YAML files more generic</li>
@@ -1314,7 +1359,7 @@
 <li>move check_types into calcipy</li>
 <li>import templates from pdocs</li>
 </ul>
-<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">⚓︎</a></h3>
+<h3 id="fix_1">Fix<a class="headerlink" href="#fix_1" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li>resolve doc_dir and style errors</li>
 <li><strong>#58</strong>: remove None from pdocs output</li>
@@ -1397,7 +1442,7 @@
 <li>combine files for linting in one command</li>
 </ul>
 <h2 id="2021020a0-2021-02-11">2021.0.2.0a0 (2021-02-11)<a class="headerlink" href="#2021020a0-2021-02-11" title="Permanent link">⚓︎</a></h2>
-<h3 id="feat_1">Feat<a class="headerlink" href="#feat_1" title="Permanent link">⚓︎</a></h3>
+<h3 id="feat_2">Feat<a class="headerlink" href="#feat_2" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li>push tags with no pre-commit hooks on pre</li>
 <li>use Interactive instead of —yes for cl_bump*</li>
@@ -1413,7 +1458,7 @@
 <li>move logger configuration to log_helpers</li>
 <li>new cl_bump task. Closes #21</li>
 </ul>
-<h3 id="fix_1">Fix<a class="headerlink" href="#fix_1" title="Permanent link">⚓︎</a></h3>
+<h3 id="fix_2">Fix<a class="headerlink" href="#fix_2" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li>do not pass filenames to pre-commit</li>
 <li><strong>#43</strong>: add year to version for pseudo-calver</li>
@@ -1445,7 +1490,7 @@
 <li>move dig test to dig test file</li>
 </ul>
 <h2 id="010-2020-12-19">0.1.0 (2020-12-19)<a class="headerlink" href="#010-2020-12-19" title="Permanent link">⚓︎</a></h2>
-<h3 id="feat_2">Feat<a class="headerlink" href="#feat_2" title="Permanent link">⚓︎</a></h3>
+<h3 id="feat_3">Feat<a class="headerlink" href="#feat_3" title="Permanent link">⚓︎</a></h3>
 <ul>
 <li>new write_cl task utilizing comittizen</li>
 <li>new task, pre_commit_hooks</li>
