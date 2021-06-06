@@ -1600,8 +1600,8 @@
 <span class="linenos" data-linenos=" 7 "></span>
 <span class="linenos" data-linenos=" 8 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos=" 9 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="10 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --annotated-tag&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="11 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="10 "></span>        <span class="o">*</span><span class="n">_write_changelog</span><span class="p">(),</span>
+<span class="linenos" data-linenos="11 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --annotated-tag&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos="12 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
 <span class="linenos" data-linenos="13 "></span>    <span class="p">])</span>
 </code></pre></div>
@@ -1637,8 +1637,8 @@
 <span class="linenos" data-linenos=" 9 "></span>
 <span class="linenos" data-linenos="10 "></span><span class="sd">    &quot;&quot;&quot;</span>
 <span class="linenos" data-linenos="11 "></span>    <span class="n">task</span> <span class="o">=</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="12 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --changelog --prerelease </span><span class="si">%(prerelease)s</span><span class="s1">&#39;</span><span class="p">),</span>
-<span class="linenos" data-linenos="13 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
+<span class="linenos" data-linenos="12 "></span>        <span class="o">*</span><span class="n">_write_changelog</span><span class="p">(),</span>
+<span class="linenos" data-linenos="13 "></span>        <span class="n">Interactive</span><span class="p">(</span><span class="s1">&#39;poetry run cz bump --prerelease </span><span class="si">%(prerelease)s</span><span class="s1">&#39;</span><span class="p">),</span>
 <span class="linenos" data-linenos="14 "></span>        <span class="s1">&#39;git push origin --tags --no-verify&#39;</span><span class="p">,</span>
 <span class="linenos" data-linenos="15 "></span>    <span class="p">])</span>
 <span class="linenos" data-linenos="16 "></span>    <span class="n">task</span><span class="p">[</span><span class="s1">&#39;params&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[{</span>
@@ -1651,16 +1651,7 @@
 <h3 id="task_cl_write">task_cl_write<a class="headerlink" href="#task_cl_write" title="Permanent link">⚓︎</a></h3>
 <div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">doit</span><span class="o">.</span><span class="n">task</span><span class="o">.</span><span class="n">Task</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">doit</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">BaseAction</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]]]</span>
 </code></pre></div>
-<p>Write a Changelog file with the raw Git history.</p>
-<p>Resources:</p>
-<ul>
-<li>https://keepachangelog.com/en/1.0.0/</li>
-<li>https://www.conventionalcommits.org/en/v1.0.0/</li>
-<li>https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message</li>
-<li>https://chris.beams.io/posts/git-commit/</li>
-<li>https://semver.org/</li>
-<li>https://calver.org/</li>
-</ul>
+<p>Task wrapper of <code>_write_changelog</code>.</p>
 <p><strong>Returns:</strong></p>
 <table>
 <thead>
@@ -1676,27 +1667,15 @@
 </tr>
 </tbody>
 </table>
-<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos=" 1 "></span><span class="nd">@beartype</span>
-<span class="linenos" data-linenos=" 2 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
-<span class="linenos" data-linenos=" 3 "></span>    <span class="sd">&quot;&quot;&quot;Write a Changelog file with the raw Git history.</span>
-<span class="linenos" data-linenos=" 4 "></span>
-<span class="linenos" data-linenos=" 5 "></span><span class="sd">    Resources:</span>
-<span class="linenos" data-linenos=" 6 "></span>
-<span class="linenos" data-linenos=" 7 "></span><span class="sd">    - https://keepachangelog.com/en/1.0.0/</span>
-<span class="linenos" data-linenos=" 8 "></span><span class="sd">    - https://www.conventionalcommits.org/en/v1.0.0/</span>
-<span class="linenos" data-linenos=" 9 "></span><span class="sd">    - https://writingfordevelopers.substack.com/p/how-to-write-a-commit-message</span>
-<span class="linenos" data-linenos="10 "></span><span class="sd">    - https://chris.beams.io/posts/git-commit/</span>
-<span class="linenos" data-linenos="11 "></span><span class="sd">    - https://semver.org/</span>
-<span class="linenos" data-linenos="12 "></span><span class="sd">    - https://calver.org/</span>
-<span class="linenos" data-linenos="13 "></span>
-<span class="linenos" data-linenos="14 "></span><span class="sd">    Returns:</span>
-<span class="linenos" data-linenos="15 "></span><span class="sd">        DoitTask: doit task</span>
-<span class="linenos" data-linenos="16 "></span>
-<span class="linenos" data-linenos="17 "></span><span class="sd">    &quot;&quot;&quot;</span>
-<span class="linenos" data-linenos="18 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">([</span>
-<span class="linenos" data-linenos="19 "></span>        <span class="s1">&#39;poetry run cz changelog&#39;</span><span class="p">,</span>
-<span class="linenos" data-linenos="20 "></span>        <span class="p">(</span><span class="n">_move_cl</span><span class="p">,</span> <span class="p">()),</span>
-<span class="linenos" data-linenos="21 "></span>    <span class="p">])</span>
+<details class="example"><summary>View Source</summary><div class="highlight"><pre><span></span><code><span class="linenos" data-linenos="1 "></span><span class="nd">@beartype</span>
+<span class="linenos" data-linenos="2 "></span><span class="k">def</span> <span class="nf">task_cl_write</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">DoitTask</span><span class="p">:</span>
+<span class="linenos" data-linenos="3 "></span>    <span class="sd">&quot;&quot;&quot;Task wrapper of `_write_changelog`.</span>
+<span class="linenos" data-linenos="4 "></span>
+<span class="linenos" data-linenos="5 "></span><span class="sd">    Returns:</span>
+<span class="linenos" data-linenos="6 "></span><span class="sd">        DoitTask: doit task</span>
+<span class="linenos" data-linenos="7 "></span>
+<span class="linenos" data-linenos="8 "></span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="linenos" data-linenos="9 "></span>    <span class="k">return</span> <span class="n">debug_task</span><span class="p">(</span><span class="n">_write_changelog</span><span class="p">())</span>
 </code></pre></div>
 </details>
 <h3 id="task_collect_code_tags">task_collect_code_tags<a class="headerlink" href="#task_collect_code_tags" title="Permanent link">⚓︎</a></h3>
